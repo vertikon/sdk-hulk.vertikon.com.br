@@ -1,0 +1,58 @@
+{
+  "linter_report_version": 17,
+  "modules": [
+    {
+      "module_path": "E:\\vertikon\\.templates\\sdk-hulk",
+      "module_name": "github.com/vertikon/gera-treina\ngithub.com/vertikon/model-router\ngithub.com/vertikon/claude-desktop-agent\ngithub.com/vertikon/mcp-go-architect-sdk-custom\ngithub.com/vertikon/mcp-shell-executor\ngithub.com/vertikon/mcp-core-inventory\ngithub.com/vertikon/mcp-fulfillment-ops\ngithub.com/vertikon-system/mcp-pim-product-master\ngithub.com/vertikon/mcp-hulk\ngithub.com/vertikon/sdk-hulk\ngithub.com/vertikon/mcp-wa-auth\ngithub.com/docker/compose/v2\ngithub.com/vertikon/mcp-gateway-providers-ai",
+      "linter_results": [
+        {
+          "tool": "golangci-lint",
+          "exit_code": 3,
+          "issues": [],
+          "fail_count": 0,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\lint-temp.json"
+        },
+        {
+          "tool": "govet",
+          "exit_code": 1,
+          "issues": [
+            {
+              "tool": "govet",
+              "file": "vet.exe: state/state_test.go",
+              "line": 943,
+              "col": 6,
+              "code": "govet",
+              "severity": "FAIL",
+              "message": "TestCache_ConcurrentGetOrSet redeclared in this block",
+              "snippet": ""
+            }
+          ],
+          "fail_count": 1,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\govet.txt"
+        },
+        {
+          "tool": "staticcheck",
+          "exit_code": 1,
+          "issues": null,
+          "fail_count": 0,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\staticcheck.txt"
+        }
+      ],
+      "total_fail": 1,
+      "total_warn": 0,
+      "total_info": 0,
+      "status": "FAIL"
+    }
+  ],
+  "timestamp": "2025-11-24 21:36:37",
+  "total_fail": 1,
+  "total_info": 0,
+  "total_modules": 1,
+  "total_warn": 0
+}

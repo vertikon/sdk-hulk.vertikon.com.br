@@ -1,0 +1,21 @@
+{
+  "project_name": "sdk-hulk",
+  "project_path": "E:\\vertikon\\.templates\\sdk-hulk",
+  "timestamp": "2025-11-25 01:05:00",
+  "validator_version": "9.4",
+  "critical": null,
+  "high": null,
+  "medium": null,
+  "low": null,
+  "total_gaps": 0,
+  "score": 100,
+  "auto_fixable": 0,
+  "manual": 0,
+  "top_priorities": null,
+  "quick_wins": null,
+  "blockers": null,
+  "technical_debt": null,
+  "recommended_tools": null,
+  "next_steps": null,
+  "estimated_effort": "0m"
+}

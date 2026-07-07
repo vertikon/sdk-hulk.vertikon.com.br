@@ -1,0 +1,1 @@
+telemetry\logger_test.go:51:49: should not use built-in type string as key for value; define your own type to avoid collisions (SA1029)

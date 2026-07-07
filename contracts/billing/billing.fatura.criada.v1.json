@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Billing Fatura Criada Event",
+  "description": "Fatura (evento de cobrança) gerada para um contrato, com QR/linha digitável.",
+  "type": "object",
+  "properties": {
+    "fatura_id": { "type": "string" },
+    "contrato_id": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "cliente_ref": { "type": "string" },
+    "produto_ref": { "type": "string" },
+    "numero_parcela": { "type": "integer" },
+    "valor_cents": { "type": "integer" },
+    "vencimento": { "type": "string", "format": "date" },
+    "status": { "type": "string", "enum": ["PENDENTE", "CONFIRMADA", "ATRASADA", "INADIMPLENTE", "CANCELADA"] },
+    "metodo": { "type": "string", "enum": ["PIX", "BOLETO"] },
+    "qr_code": { "type": "string", "description": "PIX copia-e-cola ou linha digitável" },
+    "pago_em": { "type": "string", "format": "date-time" },
+    "valor_pago_cents": { "type": "integer" },
+    "metadata": { "type": "object" }
+  },
+  "required": ["fatura_id", "contrato_id", "tenant_id", "cliente_ref", "numero_parcela", "valor_cents", "vencimento", "status"]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frequencia Registrada Event",
+  "description": "Publicado pelo academic-core quando a presença de um aluno numa aula é registrada (check-in QR pela carteirinha ou chamada manual do tutor). Consumido pelo ct-api para XP de assiduidade e por réguas de risco de evasão.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "turma_id": { "type": "string" },
+    "aluno_id": { "type": "string" },
+    "matricula_id": { "type": "string" },
+    "data": { "type": "string", "description": "YYYY-MM-DD (dia da aula)" },
+    "presente": { "type": "boolean" },
+    "origem": { "type": "string", "enum": ["QR", "MANUAL"] }
+  },
+  "required": ["tenant_id", "turma_id", "aluno_id", "matricula_id", "data", "presente", "origem"]
+}

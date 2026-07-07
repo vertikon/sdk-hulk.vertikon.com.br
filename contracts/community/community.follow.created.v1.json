@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Community Follow Created Event",
+  "description": "Publicado pelo módulo community quando um usuário passa a seguir outro.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "follower_id": { "type": "string" },
+    "following_id": { "type": "string" }
+  },
+  "required": ["tenant_id", "follower_id", "following_id"]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wallet Credit Added Event",
+  "description": "Crédito em carteira de recebedor (comissão de split na liquidação).",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "wallet_ref": { "type": "string", "description": "parceiro:<id> | polo:<id> | plataforma" },
+    "amount_cents": { "type": "integer" },
+    "origem": { "type": "string", "description": "fatura:<id>:<papel>:<ref> — chave de idempotência" },
+    "descricao": { "type": "string" }
+  },
+  "required": ["tenant_id", "wallet_ref", "amount_cents", "origem"]
+}

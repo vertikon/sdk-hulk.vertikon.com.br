@@ -1,0 +1,732 @@
+{
+  "project_name": "sdk-hulk",
+  "project_path": "E:\\vertikon\\.templates\\sdk-hulk",
+  "timestamp": "2025-11-24 17:08:19",
+  "validator_version": "9.4",
+  "critical": [
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:\n\tgo get github.com/vertikon/endurance/pkg/sdk-hulk\nexamples\\inventory_module\\module.go:9:2: ...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-17-01-38-compilation.log",
+        "",
+        "cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk",
+        "examples\\inventory_module\\module.go:9:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/events; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/events",
+        "examples\\inventory_module\\module.go:10:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/state; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/state",
+        "pkg\\sdk-hulk\\context.go:6:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/ai; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \r\n     3 | import (\r\n     4 | \t\"fmt\"\r\n     5 | \t\"os\"\r\n     6 | \r\n→    7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n     8 | \t\"go.uber.org/zap\"\r\n     9 | )\r\n    10 | \r\n    11 | // main é o ponto de entrada do SDK-HULK.\r\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\r\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n\t\"go.uber.org/zap\"\r\n)\r\n\r\n// main é o ponto de entrada do SDK-HULK.\r\n// Este arquivo serve como exemplo de como usar o SDK.\r\n// Em produção, o hulk-core será responsável por inicializar os módulos.\r\nfunc main() {\r\n\tlogger, _ := zap.NewDevelopment()\r\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\r\n\t\tzap.String(\"version\", \"v1.0.0\"),\r\n\t)\r\n\r\n\t// Exemplo de uso do SDK\r\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\r\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\r\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\r\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\r\n\r\n\tos.Exit(0)\r\n}\r",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 9,
+          "code_snippet": "     4 | \t\"context\"\n     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n→    9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n    10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 10,
+          "code_snippet": "     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n     9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n→   10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n    15 | type InventoryModule struct {\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\pkg\\sdk-hulk\\context.go",
+          "line_number": 6,
+          "code_snippet": "     1 | package hulk\n     2 | \n     3 | import (\n     4 | \t\"context\"\n     5 | \n→    6 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n     7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n     9 | \t\"go.uber.org/zap\"\n    10 | )\n    11 | \n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// Context é a evolução do context.Context padrão do Go.\n// Ele carrega as ferramentas do HULK (IA, Eventos, Banco, Logs) junto com a requisição.\ntype Context interface {\n\tcontext.Context\n\n\t// Log retorna o Logger estruturado (Zap) já com TraceIDs injetados.\n\tLog() *zap.Logger\n\n\t// EventBus acessa a camada de mensageria (NATS JetStream).\n\tEventBus() events.Bus\n\n\t// Store acessa a camada de persistência de dados e cache.\n\tStore() state.Store\n\n\t// AI acessa o cérebro cognitivo (LLM/Vision/Embeddings).\n\tAI() ai.Client\n}",
+          "symbol_name": "",
+          "package_name": "hulk",
+          "dependencies": [
+            "context",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 3,
+        "affected_lines": 4,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "high": null,
+  "medium": [
+    {
+      "type": "Linter limpo",
+      "severity": "medium",
+      "location": "multiplos arquivos",
+      "description": "✗ FAIL: 4 issues críticos, 0 warnings",
+      "suggestion": "Corrija os issues FAIL primeiro, depois warnings",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": true,
+        "requires_review": true,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": [
+          {
+            "tool_name": "golangci-lint",
+            "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+            "diagnose_command": "golangci-lint run",
+            "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+            "config_required": true,
+            "config_template": ".golangci.yml com linters selecionados",
+            "documentation": "https://golangci-lint.run/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "staticcheck",
+            "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+            "diagnose_command": "staticcheck ./...",
+            "fix_command": "# Manual - staticcheck nao tem auto-fix",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://staticcheck.io/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "gosec",
+            "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+            "diagnose_command": "gosec ./...",
+            "fix_command": "# Manual - corrija issues de seguranca",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://github.com/securego/gosec",
+            "alternative_tools": null
+          }
+        ],
+        "executable_steps": null,
+        "estimated_time": "8m",
+        "confidence": 0
+      },
+      "examples": [
+        "📦 Módulos analisados: 1",
+        "📄 Linter Report v2: JSON + SARIF gerados",
+        "",
+        "📊 Resumo por ferramenta (todos os módulos):",
+        "  • golangci-lint: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • govet: 𐄂 4 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • staticcheck: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "",
+        "🔝 Top issues prioritários (FAIL):",
+        "  1. [govet] cmd/main.go:7 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  2. [govet] examples/inventory_module/module.go:9 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  3. [govet] examples/inventory_module/module.go:10 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  4. [govet] pkg/sdk-hulk/context.go:6 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)"
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "medium",
+        "affected_files": 4,
+        "affected_lines": 4,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "8m",
+        "priority": 3,
+        "risk_level": "medium",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [
+        "performance",
+        "memory-optimization"
+      ],
+      "error_breakdown": {
+        "govet": 4
+      },
+      "top_files": [
+        "examples/inventory_module/module.go (2)",
+        "cmd/main.go (1)",
+        "pkg/sdk-hulk/context.go (1)"
+      ]
+    }
+  ],
+  "low": [
+    {
+      "type": "Coverage \u003e= 70%",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "Coverage: 0.0% (meta: 70%)",
+      "suggestion": "Aumente cobertura para 70%",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "total_gaps": 4,
+  "score": 80,
+  "auto_fixable": 0,
+  "manual": 4,
+  "top_priorities": [
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Coverage \u003e= 70%",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "Coverage: 0.0% (meta: 70%)",
+      "suggestion": "Aumente cobertura para 70%",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:\n\tgo get github.com/vertikon/endurance/pkg/sdk-hulk\nexamples\\inventory_module\\module.go:9:2: ...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-17-01-38-compilation.log",
+        "",
+        "cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk",
+        "examples\\inventory_module\\module.go:9:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/events; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/events",
+        "examples\\inventory_module\\module.go:10:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/state; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/state",
+        "pkg\\sdk-hulk\\context.go:6:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/ai; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \r\n     3 | import (\r\n     4 | \t\"fmt\"\r\n     5 | \t\"os\"\r\n     6 | \r\n→    7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n     8 | \t\"go.uber.org/zap\"\r\n     9 | )\r\n    10 | \r\n    11 | // main é o ponto de entrada do SDK-HULK.\r\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\r\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n\t\"go.uber.org/zap\"\r\n)\r\n\r\n// main é o ponto de entrada do SDK-HULK.\r\n// Este arquivo serve como exemplo de como usar o SDK.\r\n// Em produção, o hulk-core será responsável por inicializar os módulos.\r\nfunc main() {\r\n\tlogger, _ := zap.NewDevelopment()\r\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\r\n\t\tzap.String(\"version\", \"v1.0.0\"),\r\n\t)\r\n\r\n\t// Exemplo de uso do SDK\r\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\r\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\r\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\r\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\r\n\r\n\tos.Exit(0)\r\n}\r",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 9,
+          "code_snippet": "     4 | \t\"context\"\n     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n→    9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n    10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 10,
+          "code_snippet": "     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n     9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n→   10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n    15 | type InventoryModule struct {\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\pkg\\sdk-hulk\\context.go",
+          "line_number": 6,
+          "code_snippet": "     1 | package hulk\n     2 | \n     3 | import (\n     4 | \t\"context\"\n     5 | \n→    6 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n     7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n     9 | \t\"go.uber.org/zap\"\n    10 | )\n    11 | \n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// Context é a evolução do context.Context padrão do Go.\n// Ele carrega as ferramentas do HULK (IA, Eventos, Banco, Logs) junto com a requisição.\ntype Context interface {\n\tcontext.Context\n\n\t// Log retorna o Logger estruturado (Zap) já com TraceIDs injetados.\n\tLog() *zap.Logger\n\n\t// EventBus acessa a camada de mensageria (NATS JetStream).\n\tEventBus() events.Bus\n\n\t// Store acessa a camada de persistência de dados e cache.\n\tStore() state.Store\n\n\t// AI acessa o cérebro cognitivo (LLM/Vision/Embeddings).\n\tAI() ai.Client\n}",
+          "symbol_name": "",
+          "package_name": "hulk",
+          "dependencies": [
+            "context",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 3,
+        "affected_lines": 4,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Linter limpo",
+      "severity": "medium",
+      "location": "multiplos arquivos",
+      "description": "✗ FAIL: 4 issues críticos, 0 warnings",
+      "suggestion": "Corrija os issues FAIL primeiro, depois warnings",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": true,
+        "requires_review": true,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": [
+          {
+            "tool_name": "golangci-lint",
+            "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+            "diagnose_command": "golangci-lint run",
+            "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+            "config_required": true,
+            "config_template": ".golangci.yml com linters selecionados",
+            "documentation": "https://golangci-lint.run/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "staticcheck",
+            "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+            "diagnose_command": "staticcheck ./...",
+            "fix_command": "# Manual - staticcheck nao tem auto-fix",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://staticcheck.io/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "gosec",
+            "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+            "diagnose_command": "gosec ./...",
+            "fix_command": "# Manual - corrija issues de seguranca",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://github.com/securego/gosec",
+            "alternative_tools": null
+          }
+        ],
+        "executable_steps": null,
+        "estimated_time": "8m",
+        "confidence": 0
+      },
+      "examples": [
+        "📦 Módulos analisados: 1",
+        "📄 Linter Report v2: JSON + SARIF gerados",
+        "",
+        "📊 Resumo por ferramenta (todos os módulos):",
+        "  • golangci-lint: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • govet: 𐄂 4 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • staticcheck: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "",
+        "🔝 Top issues prioritários (FAIL):",
+        "  1. [govet] cmd/main.go:7 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  2. [govet] examples/inventory_module/module.go:9 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  3. [govet] examples/inventory_module/module.go:10 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)",
+        "  4. [govet] pkg/sdk-hulk/context.go:6 - no required module provides package github.com/vertikon/endurance/pkg/... (govet)"
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "medium",
+        "affected_files": 4,
+        "affected_lines": 4,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "8m",
+        "priority": 3,
+        "risk_level": "medium",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [
+        "performance",
+        "memory-optimization"
+      ],
+      "error_breakdown": {
+        "govet": 4
+      },
+      "top_files": [
+        "examples/inventory_module/module.go (2)",
+        "cmd/main.go (1)",
+        "pkg/sdk-hulk/context.go (1)"
+      ]
+    }
+  ],
+  "quick_wins": null,
+  "blockers": [
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:\n\tgo get github.com/vertikon/endurance/pkg/sdk-hulk\nexamples\\inventory_module\\module.go:9:2: ...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-17-01-38-compilation.log",
+        "",
+        "cmd\\main.go:7:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk",
+        "examples\\inventory_module\\module.go:9:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/events; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/events",
+        "examples\\inventory_module\\module.go:10:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/state; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/state",
+        "pkg\\sdk-hulk\\context.go:6:2: no required module provides package github.com/vertikon/endurance/pkg/sdk-hulk/ai; to add it:",
+        "\tgo get github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \r\n     3 | import (\r\n     4 | \t\"fmt\"\r\n     5 | \t\"os\"\r\n     6 | \r\n→    7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n     8 | \t\"go.uber.org/zap\"\r\n     9 | )\r\n    10 | \r\n    11 | // main é o ponto de entrada do SDK-HULK.\r\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\r\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\r\n\t\"go.uber.org/zap\"\r\n)\r\n\r\n// main é o ponto de entrada do SDK-HULK.\r\n// Este arquivo serve como exemplo de como usar o SDK.\r\n// Em produção, o hulk-core será responsável por inicializar os módulos.\r\nfunc main() {\r\n\tlogger, _ := zap.NewDevelopment()\r\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\r\n\t\tzap.String(\"version\", \"v1.0.0\"),\r\n\t)\r\n\r\n\t// Exemplo de uso do SDK\r\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\r\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\r\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\r\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\r\n\r\n\tos.Exit(0)\r\n}\r",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 9,
+          "code_snippet": "     4 | \t\"context\"\n     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n→    9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n    10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\examples\\inventory_module\\module.go",
+          "line_number": 10,
+          "code_snippet": "     5 | \t\"encoding/json\"\n     6 | \t\"fmt\"\n     7 | \n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk\"\n     9 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n→   10 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n    11 | \t\"go.uber.org/zap\"\n    12 | )\n    13 | \n    14 | // InventoryModule implementa o módulo de gestão de estoque.\n    15 | type InventoryModule struct {\n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// InventoryModule implementa o módulo de gestão de estoque.\ntype InventoryModule struct {\n\tledgerService *LedgerService\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "context",
+            "encoding/json",
+            "fmt",
+            "github.com/vertikon/endurance/pkg/sdk-hulk",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\pkg\\sdk-hulk\\context.go",
+          "line_number": 6,
+          "code_snippet": "     1 | package hulk\n     2 | \n     3 | import (\n     4 | \t\"context\"\n     5 | \n→    6 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n     7 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n     8 | \t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n     9 | \t\"go.uber.org/zap\"\n    10 | )\n    11 | \n",
+          "full_function": "\t\"github.com/vertikon/endurance/pkg/sdk-hulk/ai\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/events\"\n\t\"github.com/vertikon/endurance/pkg/sdk-hulk/state\"\n\t\"go.uber.org/zap\"\n)\n\n// Context é a evolução do context.Context padrão do Go.\n// Ele carrega as ferramentas do HULK (IA, Eventos, Banco, Logs) junto com a requisição.\ntype Context interface {\n\tcontext.Context\n\n\t// Log retorna o Logger estruturado (Zap) já com TraceIDs injetados.\n\tLog() *zap.Logger\n\n\t// EventBus acessa a camada de mensageria (NATS JetStream).\n\tEventBus() events.Bus\n\n\t// Store acessa a camada de persistência de dados e cache.\n\tStore() state.Store\n\n\t// AI acessa o cérebro cognitivo (LLM/Vision/Embeddings).\n\tAI() ai.Client\n}",
+          "symbol_name": "",
+          "package_name": "hulk",
+          "dependencies": [
+            "context",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/ai",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/events",
+            "github.com/vertikon/endurance/pkg/sdk-hulk/state",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 3,
+        "affected_lines": 4,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "technical_debt": null,
+  "recommended_tools": [
+    {
+      "tool_name": "golangci-lint",
+      "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+      "diagnose_command": "golangci-lint run",
+      "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+      "config_required": true,
+      "config_template": ".golangci.yml com linters selecionados",
+      "documentation": "https://golangci-lint.run/",
+      "alternative_tools": null
+    },
+    {
+      "tool_name": "staticcheck",
+      "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+      "diagnose_command": "staticcheck ./...",
+      "fix_command": "# Manual - staticcheck nao tem auto-fix",
+      "config_required": false,
+      "config_template": "",
+      "documentation": "https://staticcheck.io/",
+      "alternative_tools": null
+    },
+    {
+      "tool_name": "gosec",
+      "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+      "diagnose_command": "gosec ./...",
+      "fix_command": "# Manual - corrija issues de seguranca",
+      "config_required": false,
+      "config_template": "",
+      "documentation": "https://github.com/securego/gosec",
+      "alternative_tools": null
+    }
+  ],
+  "next_steps": [
+    "🔴 URGENTE: Resolver 1 bloqueador(es)"
+  ],
+  "estimated_effort": "15m"
+}

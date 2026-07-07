@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Subscription Renewed Event",
+  "description": "Publicado pelo subscription-hub quando uma renovação é processada (invoice gerada e cobrada).",
+  "type": "object",
+  "properties": {
+    "subscription_id": { "type": "string" },
+    "customer_id": { "type": "string" },
+    "invoice_id": { "type": "string" },
+    "amount_cents": { "type": "integer", "description": "Centavos" },
+    "currency": { "type": "string" },
+    "status": { "type": "string", "enum": ["DRAFT", "OPEN", "PAID", "UNCOLLECTIBLE", "VOID"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["subscription_id", "customer_id", "invoice_id", "amount_cents", "status"]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shortlink Opened Event",
+  "description": "Publicado pelo lead-intake-gateway quando um toque type=shortlink.opened é registrado. Tópico legado sem prefixo de domínio (shortlink.opened.v1).",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "session_id": { "type": "string", "format": "uuid" },
+    "lead_id": { "type": "string", "format": "uuid" },
+    "ref": { "type": "string" },
+    "short_code": { "type": "string" }
+  },
+  "required": ["tenant_id", "session_id", "lead_id", "ref"]
+}

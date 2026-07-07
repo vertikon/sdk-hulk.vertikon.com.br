@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "cmd/main.go"
+                },
+                "region": {
+                  "startColumn": 2,
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "no required module provides package github.com/vertikon/sdk-hulk; to add it:"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/inventory_module/module.go"
+                },
+                "region": {
+                  "startColumn": 2,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "no required module provides package github.com/vertikon/sdk-hulk/events; to add it:"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/inventory_module/module.go"
+                },
+                "region": {
+                  "startColumn": 2,
+                  "startLine": 10
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "no required module provides package github.com/vertikon/sdk-hulk/state; to add it:"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pkg/sdk-hulk/context.go"
+                },
+                "region": {
+                  "startColumn": 2,
+                  "startLine": 6
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "no required module provides package github.com/vertikon/sdk-hulk/ai; to add it:"
+          },
+          "ruleId": "govet"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/vertikon/mcp-validator",
+          "name": "MCP Validator V9.1",
+          "version": "9.4"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

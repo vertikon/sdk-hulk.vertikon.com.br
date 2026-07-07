@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "vet.exe: ai/ai_test.go"
+                },
+                "region": {
+                  "startColumn": 9,
+                  "startLine": 95
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "undefined: LLM"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "vet.exe: events/events_test.go"
+                },
+                "region": {
+                  "startColumn": 15,
+                  "startLine": 88
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "cannot use msg (variable of type *MockMessage) as Message value in argument to handler: *MockMessage does not implement Message (missing method Nak)"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "vet.exe: state/state_test.go"
+                },
+                "region": {
+                  "startColumn": 20,
+                  "startLine": 167
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "cannot use store (variable of type *MockStore) as Store value in argument to NewCache: *MockStore does not implement Store (missing method BeginTx)"
+          },
+          "ruleId": "govet"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "cmd/main.go"
+                },
+                "region": {
+                  "startColumn": 3,
+                  "startLine": 97
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "fmt.Println arg list ends with redundant newline"
+          },
+          "ruleId": "govet"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/vertikon/mcp-validator",
+          "name": "MCP Validator V9.1",
+          "version": "9.4"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

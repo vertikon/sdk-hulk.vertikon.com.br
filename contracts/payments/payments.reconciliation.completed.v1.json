@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reconciliation Completed Event",
+  "description": "Conciliação diária de custódia (provider BaaS × Σ carteiras) concluída para um tenant",
+  "type": "object",
+  "properties": {
+    "run_id": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "custody_cents": { "type": "integer", "description": "Saldo de custódia no provider, em centavos" },
+    "wallets_total_cents": { "type": "integer", "description": "Σ saldos das carteiras, em centavos" },
+    "difference_cents": { "type": "integer", "description": "custody − wallets; negativo = divergência" },
+    "status": { "type": "string", "enum": ["OK", "DIVERGENT"] },
+    "run_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["run_id", "tenant_id", "custody_cents", "wallets_total_cents", "difference_cents", "status", "run_at"]
+}

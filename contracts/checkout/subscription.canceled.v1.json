@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Subscription Canceled Event",
+  "description": "Publicado pelo subscription-hub quando uma assinatura é cancelada (imediato ou ao fim do período).",
+  "type": "object",
+  "properties": {
+    "subscription_id": { "type": "string" },
+    "customer_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["TRIALING", "ACTIVE", "PAST_DUE", "UNPAID", "CANCELED", "PAUSED"] },
+    "cancel_at_period_end": { "type": "boolean" },
+    "canceled_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "required": ["subscription_id", "customer_id", "status", "cancel_at_period_end"]
+}

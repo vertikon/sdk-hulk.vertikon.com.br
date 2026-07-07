@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gamification Achievement Unlocked Event",
+  "description": "Publicado pelo módulo gamification quando um usuário desbloqueia uma conquista.",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" },
+    "code": { "type": "string" },
+    "name": { "type": "string" },
+    "xp_reward": { "type": "integer", "minimum": 0 },
+    "unlocked_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["user_id", "code"]
+}

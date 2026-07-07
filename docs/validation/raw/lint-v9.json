@@ -1,0 +1,88 @@
+{
+  "linter_report_version": 9,
+  "modules": [
+    {
+      "module_path": "E:\\vertikon\\.templates\\sdk-hulk",
+      "module_name": "github.com/vertikon/gera-treina\ngithub.com/vertikon/model-router\ngithub.com/vertikon/claude-desktop-agent\ngithub.com/vertikon/mcp-go-architect-sdk-custom\ngithub.com/vertikon/mcp-shell-executor\ngithub.com/vertikon/mcp-core-inventory\ngithub.com/vertikon/mcp-fulfillment-ops\ngithub.com/vertikon-system/mcp-pim-product-master\ngithub.com/vertikon/mcp-hulk\ngithub.com/vertikon/sdk-hulk\ngithub.com/vertikon/mcp-wa-auth\ngithub.com/docker/compose/v2\ngithub.com/vertikon/mcp-gateway-providers-ai",
+      "linter_results": [
+        {
+          "tool": "golangci-lint",
+          "exit_code": 1,
+          "issues": [],
+          "fail_count": 0,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\lint-temp.json"
+        },
+        {
+          "tool": "govet",
+          "exit_code": 1,
+          "issues": [
+            {
+              "tool": "govet",
+              "file": "vet.exe: ai/ai_test.go",
+              "line": 95,
+              "col": 9,
+              "code": "govet",
+              "severity": "FAIL",
+              "message": "undefined: LLM",
+              "snippet": ""
+            },
+            {
+              "tool": "govet",
+              "file": "vet.exe: events/events_test.go",
+              "line": 88,
+              "col": 15,
+              "code": "govet",
+              "severity": "FAIL",
+              "message": "cannot use msg (variable of type *MockMessage) as Message value in argument to handler: *MockMessage does not implement Message (missing method Nak)",
+              "snippet": ""
+            },
+            {
+              "tool": "govet",
+              "file": "vet.exe: state/state_test.go",
+              "line": 167,
+              "col": 20,
+              "code": "govet",
+              "severity": "FAIL",
+              "message": "cannot use store (variable of type *MockStore) as Store value in argument to NewCache: *MockStore does not implement Store (missing method BeginTx)",
+              "snippet": ""
+            },
+            {
+              "tool": "govet",
+              "file": "cmd/main.go",
+              "line": 97,
+              "col": 3,
+              "code": "govet",
+              "severity": "FAIL",
+              "message": "fmt.Println arg list ends with redundant newline",
+              "snippet": ""
+            }
+          ],
+          "fail_count": 4,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\govet.txt"
+        },
+        {
+          "tool": "staticcheck",
+          "exit_code": 1,
+          "issues": null,
+          "fail_count": 0,
+          "warn_count": 0,
+          "info_count": 0,
+          "raw_log_path": "E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\staticcheck.txt"
+        }
+      ],
+      "total_fail": 4,
+      "total_warn": 0,
+      "total_info": 0,
+      "status": "FAIL"
+    }
+  ],
+  "timestamp": "2025-11-24 19:27:05",
+  "total_fail": 4,
+  "total_info": 0,
+  "total_modules": 1,
+  "total_warn": 0
+}

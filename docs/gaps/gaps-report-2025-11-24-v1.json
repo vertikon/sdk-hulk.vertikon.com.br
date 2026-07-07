@@ -1,0 +1,583 @@
+{
+  "project_name": "sdk-hulk",
+  "project_path": "E:\\vertikon\\.templates\\sdk-hulk",
+  "timestamp": "2025-11-24 16:56:56",
+  "validator_version": "9.4",
+  "critical": [
+    {
+      "type": "Clean Architecture Structure",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Estrutura Clean Architecture incompleta",
+      "suggestion": "Crie os diretorios faltantes: cmd, internal",
+      "fixability": {
+        "safe": true,
+        "rollback_easy": true,
+        "affects_behavior": false,
+        "requires_review": false,
+        "auto_fix_command": "mkdir -p cmd internal",
+        "tools": null,
+        "executable_steps": [
+          {
+            "order": 1,
+            "description": "Criar estrutura de diretorios Clean Architecture",
+            "command": "mkdir -p cmd internal",
+            "expected_output": "Diretorios criados sem erro",
+            "validation": "ls -la para verificar diretorios",
+            "rollback": "rm -rf cmd internal",
+            "prerequisites": null,
+            "warnings": null
+          }
+        ],
+        "estimated_time": "\u003c 1 minuto",
+        "confidence": 1
+      },
+      "examples": [
+        "cmd",
+        "internal"
+      ],
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "cmd",
+          "dependencies": null,
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\internal",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "internal",
+          "dependencies": null,
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "high",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5 minutos",
+        "priority": 2,
+        "risk_level": "low",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies\n",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-16-54-53-compilation.log",
+        "",
+        "pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Testes PASSAM",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Testes falharam",
+      "suggestion": "Corrija os testes. Use 'go test -v ./...'",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-16-55-00-tests.log"
+      ],
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "high": null,
+  "medium": null,
+  "low": [
+    {
+      "type": "NATS subjects documentados",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "NATS subjects nao documentados",
+      "suggestion": "Crie docs/NATS_SUBJECTS.md",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "total_gaps": 5,
+  "score": 75,
+  "auto_fixable": 1,
+  "manual": 4,
+  "top_priorities": [
+    {
+      "type": "Testes PASSAM",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Testes falharam",
+      "suggestion": "Corrija os testes. Use 'go test -v ./...'",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-16-55-00-tests.log"
+      ],
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "NATS subjects documentados",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "NATS subjects nao documentados",
+      "suggestion": "Crie docs/NATS_SUBJECTS.md",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies\n",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-16-54-53-compilation.log",
+        "",
+        "pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Clean Architecture Structure",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Estrutura Clean Architecture incompleta",
+      "suggestion": "Crie os diretorios faltantes: cmd, internal",
+      "fixability": {
+        "safe": true,
+        "rollback_easy": true,
+        "affects_behavior": false,
+        "requires_review": false,
+        "auto_fix_command": "mkdir -p cmd internal",
+        "tools": null,
+        "executable_steps": [
+          {
+            "order": 1,
+            "description": "Criar estrutura de diretorios Clean Architecture",
+            "command": "mkdir -p cmd internal",
+            "expected_output": "Diretorios criados sem erro",
+            "validation": "ls -la para verificar diretorios",
+            "rollback": "rm -rf cmd internal",
+            "prerequisites": null,
+            "warnings": null
+          }
+        ],
+        "estimated_time": "\u003c 1 minuto",
+        "confidence": 1
+      },
+      "examples": [
+        "cmd",
+        "internal"
+      ],
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "cmd",
+          "dependencies": null,
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\internal",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "internal",
+          "dependencies": null,
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "high",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5 minutos",
+        "priority": 2,
+        "risk_level": "low",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "quick_wins": [
+    {
+      "type": "Clean Architecture Structure",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Estrutura Clean Architecture incompleta",
+      "suggestion": "Crie os diretorios faltantes: cmd, internal",
+      "fixability": {
+        "safe": true,
+        "rollback_easy": true,
+        "affects_behavior": false,
+        "requires_review": false,
+        "auto_fix_command": "mkdir -p cmd internal",
+        "tools": null,
+        "executable_steps": [
+          {
+            "order": 1,
+            "description": "Criar estrutura de diretorios Clean Architecture",
+            "command": "mkdir -p cmd internal",
+            "expected_output": "Diretorios criados sem erro",
+            "validation": "ls -la para verificar diretorios",
+            "rollback": "rm -rf cmd internal",
+            "prerequisites": null,
+            "warnings": null
+          }
+        ],
+        "estimated_time": "\u003c 1 minuto",
+        "confidence": 1
+      },
+      "examples": [
+        "cmd",
+        "internal"
+      ],
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "cmd",
+          "dependencies": null,
+          "related_files": null
+        },
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\internal",
+          "line_number": 0,
+          "code_snippet": "",
+          "full_function": "",
+          "symbol_name": "",
+          "package_name": "internal",
+          "dependencies": null,
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "high",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5 minutos",
+        "priority": 2,
+        "risk_level": "low",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "blockers": [
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies\n",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-16-54-53-compilation.log",
+        "",
+        "pattern ./...: directory prefix . does not contain modules listed in go.work or their selected dependencies",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "technical_debt": null,
+  "recommended_tools": null,
+  "next_steps": [
+    "🔴 URGENTE: Resolver 1 bloqueador(es)",
+    "⚡ Quick wins: 1 GAP(s) faceis",
+    "🤖 Auto-fixavel: 1 GAP(s)"
+  ],
+  "estimated_effort": "15m"
+}

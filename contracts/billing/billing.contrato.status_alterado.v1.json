@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Billing Contrato Status Alterado Event",
+  "description": "Mudança de status do contrato (régua, pausa, cancelamento, finalização).",
+  "type": "object",
+  "properties": {
+    "contrato_id": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "cliente_ref": { "type": "string", "description": "Referência do cliente no consumidor (ex.: user_id)" },
+    "produto_ref": { "type": "string" },
+    "status": { "type": "string", "enum": ["AGUARDANDO_PAGAMENTO", "EM_DIA", "ATRASADO", "PAUSADO", "CANCELADO", "FINALIZADO", "EXPIRADO"] },
+    "valor_parcela_cents": { "type": "integer", "description": "Valor em centavos" },
+    "frequencia": { "type": "string", "enum": ["MENSAL", "TRIMESTRAL", "SEMESTRAL", "ANUAL"] },
+    "limite_cobranca": { "type": "integer" },
+    "parcelas_emitidas": { "type": "integer" },
+    "justificativa": { "type": "string" },
+    "metadata": { "type": "object", "description": "Chaves do consumidor (user_id, course_id, ref...)" }
+  },
+  "required": ["contrato_id", "tenant_id", "cliente_ref", "status", "valor_parcela_cents", "frequencia"]
+}

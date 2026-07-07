@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Community Comment Created Event",
+  "description": "Publicado pelo módulo community quando um comentário é criado.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "post_id": { "type": "string" },
+    "comment_id": { "type": "string" },
+    "author_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["tenant_id", "post_id", "comment_id", "author_id"]
+}

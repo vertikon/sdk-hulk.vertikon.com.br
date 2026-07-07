@@ -1,0 +1,560 @@
+{
+  "project_name": "sdk-hulk",
+  "project_path": "E:\\vertikon\\.templates\\sdk-hulk",
+  "timestamp": "2025-11-24 18:33:22",
+  "validator_version": "9.4",
+  "critical": [
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: # github.com/vertikon/sdk-hulk/examples/inventory_module\nruntime.main_main·f: function main is undeclared in the main package\n# github.com/vertikon/sdk-hulk/examples/simple_module\nruntime.main_main·...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-18-32-14-compilation.log",
+        "",
+        "# github.com/vertikon/sdk-hulk/examples/inventory_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/examples/simple_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/cmd",
+        "cmd\\main.go:7:2: \"github.com/vertikon/sdk-hulk\" imported as hulk and not used",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \n     3 | import (\n     4 | \t\"fmt\"\n     5 | \t\"os\"\n     6 | \n→    7 | \t\"github.com/vertikon/sdk-hulk\"\n     8 | \t\"go.uber.org/zap\"\n     9 | )\n    10 | \n    11 | // main é o ponto de entrada do SDK-HULK.\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\n",
+          "full_function": "\t\"github.com/vertikon/sdk-hulk\"\n\t\"go.uber.org/zap\"\n)\n\n// main é o ponto de entrada do SDK-HULK.\n// Este arquivo serve como exemplo de como usar o SDK.\n// Em produção, o hulk-core será responsável por inicializar os módulos.\nfunc main() {\n\tlogger, _ := zap.NewDevelopment()\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\n\t\tzap.String(\"version\", \"v1.0.0\"),\n\t)\n\n\t// Exemplo de uso do SDK\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\n\n\tos.Exit(0)\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 1,
+        "affected_lines": 1,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "high": null,
+  "medium": [
+    {
+      "type": "Linter limpo",
+      "severity": "medium",
+      "location": "multiplos arquivos",
+      "description": "✗ FAIL: 1 issues críticos, 0 warnings",
+      "suggestion": "Corrija os issues FAIL primeiro, depois warnings",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": true,
+        "requires_review": true,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": [
+          {
+            "tool_name": "golangci-lint",
+            "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+            "diagnose_command": "golangci-lint run",
+            "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+            "config_required": true,
+            "config_template": ".golangci.yml com linters selecionados",
+            "documentation": "https://golangci-lint.run/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "staticcheck",
+            "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+            "diagnose_command": "staticcheck ./...",
+            "fix_command": "# Manual - staticcheck nao tem auto-fix",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://staticcheck.io/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "gosec",
+            "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+            "diagnose_command": "gosec ./...",
+            "fix_command": "# Manual - corrija issues de seguranca",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://github.com/securego/gosec",
+            "alternative_tools": null
+          }
+        ],
+        "executable_steps": null,
+        "estimated_time": "2m",
+        "confidence": 0
+      },
+      "examples": [
+        "📦 Módulos analisados: 1",
+        "📄 Linter Report v4: JSON + SARIF gerados",
+        "",
+        "📊 Resumo por ferramenta (todos os módulos):",
+        "  • golangci-lint: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • govet: 𐄂 1 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • staticcheck: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "",
+        "🔝 Top issues prioritários (FAIL):",
+        "  1. [govet] vet.exe: cmd/main.go:7 - \"github.com/vertikon/sdk-hulk\" imported as hulk and not used (govet)"
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "medium",
+        "affected_files": 1,
+        "affected_lines": 1,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "2m",
+        "priority": 3,
+        "risk_level": "medium",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [
+        "performance",
+        "memory-optimization"
+      ],
+      "error_breakdown": {
+        "govet": 1
+      },
+      "top_files": [
+        "vet.exe: cmd/main.go (1)"
+      ]
+    }
+  ],
+  "low": [
+    {
+      "type": "Coverage \u003e= 70%",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "Coverage: 0.0% (meta: 70%)",
+      "suggestion": "Aumente cobertura para 70%",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "total_gaps": 4,
+  "score": 80,
+  "auto_fixable": 0,
+  "manual": 4,
+  "top_priorities": [
+    {
+      "type": "Health check",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Health check nao encontrado",
+      "suggestion": "Adicione endpoint GET /health",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Coverage \u003e= 70%",
+      "severity": "low",
+      "location": "multiplos arquivos",
+      "description": "Coverage: 0.0% (meta: 70%)",
+      "suggestion": "Aumente cobertura para 70%",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "",
+        "confidence": 0
+      },
+      "examples": null,
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "",
+        "affected_files": 0,
+        "affected_lines": 0,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "",
+        "priority": 0,
+        "risk_level": "",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: # github.com/vertikon/sdk-hulk/examples/inventory_module\nruntime.main_main·f: function main is undeclared in the main package\n# github.com/vertikon/sdk-hulk/examples/simple_module\nruntime.main_main·...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-18-32-14-compilation.log",
+        "",
+        "# github.com/vertikon/sdk-hulk/examples/inventory_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/examples/simple_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/cmd",
+        "cmd\\main.go:7:2: \"github.com/vertikon/sdk-hulk\" imported as hulk and not used",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \n     3 | import (\n     4 | \t\"fmt\"\n     5 | \t\"os\"\n     6 | \n→    7 | \t\"github.com/vertikon/sdk-hulk\"\n     8 | \t\"go.uber.org/zap\"\n     9 | )\n    10 | \n    11 | // main é o ponto de entrada do SDK-HULK.\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\n",
+          "full_function": "\t\"github.com/vertikon/sdk-hulk\"\n\t\"go.uber.org/zap\"\n)\n\n// main é o ponto de entrada do SDK-HULK.\n// Este arquivo serve como exemplo de como usar o SDK.\n// Em produção, o hulk-core será responsável por inicializar os módulos.\nfunc main() {\n\tlogger, _ := zap.NewDevelopment()\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\n\t\tzap.String(\"version\", \"v1.0.0\"),\n\t)\n\n\t// Exemplo de uso do SDK\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\n\n\tos.Exit(0)\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 1,
+        "affected_lines": 1,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    },
+    {
+      "type": "Linter limpo",
+      "severity": "medium",
+      "location": "multiplos arquivos",
+      "description": "✗ FAIL: 1 issues críticos, 0 warnings",
+      "suggestion": "Corrija os issues FAIL primeiro, depois warnings",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": true,
+        "requires_review": true,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": [
+          {
+            "tool_name": "golangci-lint",
+            "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+            "diagnose_command": "golangci-lint run",
+            "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+            "config_required": true,
+            "config_template": ".golangci.yml com linters selecionados",
+            "documentation": "https://golangci-lint.run/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "staticcheck",
+            "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+            "diagnose_command": "staticcheck ./...",
+            "fix_command": "# Manual - staticcheck nao tem auto-fix",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://staticcheck.io/",
+            "alternative_tools": null
+          },
+          {
+            "tool_name": "gosec",
+            "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+            "diagnose_command": "gosec ./...",
+            "fix_command": "# Manual - corrija issues de seguranca",
+            "config_required": false,
+            "config_template": "",
+            "documentation": "https://github.com/securego/gosec",
+            "alternative_tools": null
+          }
+        ],
+        "executable_steps": null,
+        "estimated_time": "2m",
+        "confidence": 0
+      },
+      "examples": [
+        "📦 Módulos analisados: 1",
+        "📄 Linter Report v4: JSON + SARIF gerados",
+        "",
+        "📊 Resumo por ferramenta (todos os módulos):",
+        "  • golangci-lint: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • govet: 𐄂 1 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "  • staticcheck: 𐄂 0 FAIL / ⚠ 0 WARN / ℹ 0 INFO",
+        "",
+        "🔝 Top issues prioritários (FAIL):",
+        "  1. [govet] vet.exe: cmd/main.go:7 - \"github.com/vertikon/sdk-hulk\" imported as hulk and not used (govet)"
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": null,
+      "impact_analysis": {
+        "severity": "medium",
+        "affected_files": 1,
+        "affected_lines": 1,
+        "blocks_deploy": false,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "2m",
+        "priority": 3,
+        "risk_level": "medium",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [
+        "performance",
+        "memory-optimization"
+      ],
+      "error_breakdown": {
+        "govet": 1
+      },
+      "top_files": [
+        "vet.exe: cmd/main.go (1)"
+      ]
+    }
+  ],
+  "quick_wins": null,
+  "blockers": [
+    {
+      "type": "Codigo compila",
+      "severity": "critical",
+      "location": "multiplos arquivos",
+      "description": "Nao compila: # github.com/vertikon/sdk-hulk/examples/inventory_module\nruntime.main_main·f: function main is undeclared in the main package\n# github.com/vertikon/sdk-hulk/examples/simple_module\nruntime.main_main·...",
+      "suggestion": "Corrija os erros de compilacao listados",
+      "fixability": {
+        "safe": false,
+        "rollback_easy": false,
+        "affects_behavior": false,
+        "requires_review": false,
+        "non_fixable_reason": "BUSINESS_LOGIC",
+        "tools": null,
+        "executable_steps": null,
+        "estimated_time": "Variavel - depende dos erros",
+        "confidence": 0
+      },
+      "examples": [
+        "📄 Log completo: E:\\vertikon\\.templates\\sdk-hulk\\docs\\validation\\raw\\2025-11-24-18-32-14-compilation.log",
+        "",
+        "# github.com/vertikon/sdk-hulk/examples/inventory_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/examples/simple_module",
+        "runtime.main_main·f: function main is undeclared in the main package",
+        "# github.com/vertikon/sdk-hulk/cmd",
+        "cmd\\main.go:7:2: \"github.com/vertikon/sdk-hulk\" imported as hulk and not used",
+        ""
+      ],
+      "non_fixable_reason": "BUSINESS_LOGIC",
+      "code_contexts": [
+        {
+          "file_path": "E:\\vertikon\\.templates\\sdk-hulk\\cmd\\main.go",
+          "line_number": 7,
+          "code_snippet": "     2 | \n     3 | import (\n     4 | \t\"fmt\"\n     5 | \t\"os\"\n     6 | \n→    7 | \t\"github.com/vertikon/sdk-hulk\"\n     8 | \t\"go.uber.org/zap\"\n     9 | )\n    10 | \n    11 | // main é o ponto de entrada do SDK-HULK.\n    12 | // Este arquivo serve como exemplo de como usar o SDK.\n",
+          "full_function": "\t\"github.com/vertikon/sdk-hulk\"\n\t\"go.uber.org/zap\"\n)\n\n// main é o ponto de entrada do SDK-HULK.\n// Este arquivo serve como exemplo de como usar o SDK.\n// Em produção, o hulk-core será responsável por inicializar os módulos.\nfunc main() {\n\tlogger, _ := zap.NewDevelopment()\n\tlogger.Info(\"SDK-HULK - SDK para desenvolvimento de módulos Vertikon\",\n\t\tzap.String(\"version\", \"v1.0.0\"),\n\t)\n\n\t// Exemplo de uso do SDK\n\t// Em produção, o hulk-core criará o Context e registrará os módulos\n\tfmt.Println(\"SDK-HULK está pronto para uso!\")\n\tfmt.Println(\"Para usar o SDK, implemente a interface hulk.Module em seus módulos.\")\n\tfmt.Println(\"Veja examples/ para exemplos de implementação.\")\n\n\tos.Exit(0)\n}",
+          "symbol_name": "",
+          "package_name": "main",
+          "dependencies": [
+            "fmt",
+            "os",
+            "github.com/vertikon/sdk-hulk",
+            "go.uber.org/zap"
+          ],
+          "related_files": null
+        }
+      ],
+      "impact_analysis": {
+        "severity": "critical",
+        "affected_files": 1,
+        "affected_lines": 1,
+        "blocks_deploy": true,
+        "blocks_tests": false,
+        "breaks_api": false,
+        "estimated_time": "5-15 minutos",
+        "priority": 1,
+        "risk_level": "high",
+        "dependencies": null
+      },
+      "related_gaps": null,
+      "tags": [],
+      "error_breakdown": {},
+      "top_files": []
+    }
+  ],
+  "technical_debt": null,
+  "recommended_tools": [
+    {
+      "tool_name": "golangci-lint",
+      "install_command": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+      "diagnose_command": "golangci-lint run",
+      "fix_command": "# NAO use --fix automaticamente, revise cada issue",
+      "config_required": true,
+      "config_template": ".golangci.yml com linters selecionados",
+      "documentation": "https://golangci-lint.run/",
+      "alternative_tools": null
+    },
+    {
+      "tool_name": "staticcheck",
+      "install_command": "go install honnef.co/go/tools/cmd/staticcheck@latest",
+      "diagnose_command": "staticcheck ./...",
+      "fix_command": "# Manual - staticcheck nao tem auto-fix",
+      "config_required": false,
+      "config_template": "",
+      "documentation": "https://staticcheck.io/",
+      "alternative_tools": null
+    },
+    {
+      "tool_name": "gosec",
+      "install_command": "go install github.com/securego/gosec/v2/cmd/gosec@latest",
+      "diagnose_command": "gosec ./...",
+      "fix_command": "# Manual - corrija issues de seguranca",
+      "config_required": false,
+      "config_template": "",
+      "documentation": "https://github.com/securego/gosec",
+      "alternative_tools": null
+    }
+  ],
+  "next_steps": [
+    "🔴 URGENTE: Resolver 1 bloqueador(es)"
+  ],
+  "estimated_effort": "15m"
+}

@@ -1,0 +1,3 @@
+# github.com/vertikon/sdk-hulk/state
+# [github.com/vertikon/sdk-hulk/state]
+vet.exe: state\state_test.go:943:6: TestCache_ConcurrentGetOrSet redeclared in this block

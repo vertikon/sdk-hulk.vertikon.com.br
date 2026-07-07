@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Banca Resultado Event",
+  "description": "Publicado pelo academic-core quando o parecer de um candidato em banca de certificação por competência é registrado (apto/nao_apto/ausente). Consumido pelo ct-api para notificar o candidato e disparar a esteira de certificado quando apto.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "evento_id": { "type": "string" },
+    "aluno_id": { "type": "string" },
+    "matricula_id": { "type": "string" },
+    "parecer": { "type": "string", "enum": ["apto", "nao_apto", "ausente"] }
+  },
+  "required": ["tenant_id", "evento_id", "aluno_id", "parecer"]
+}

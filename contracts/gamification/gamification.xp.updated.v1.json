@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gamification XP Updated Event",
+  "description": "Publicado pelo módulo gamification quando o XP de um usuário é atualizado. Consumido pelo eduuo (notificações/UI) e pelo neuralead-orbital (E-score).",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" },
+    "action": { "type": "string" },
+    "xp_delta": { "type": "integer" },
+    "xp_total": { "type": "integer", "minimum": 0 },
+    "level": { "type": "integer", "minimum": 1 },
+    "streak": { "type": "integer", "minimum": 0 },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["user_id", "action", "xp_total", "level"]
+}

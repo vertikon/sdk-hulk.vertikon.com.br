@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wallet Withdrawal Settled Event",
+  "description": "Saque PIX da carteira liquidado no trilho BaaS (débito efetivado).",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "wallet_ref": { "type": "string" },
+    "withdrawal_id": { "type": "string" },
+    "amount_cents": { "type": "integer" }
+  },
+  "required": ["tenant_id", "wallet_ref", "withdrawal_id", "amount_cents"]
+}

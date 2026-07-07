@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Progresso Atualizado Event",
+  "description": "Publicado pelo academic-core quando o progresso de uma unidade letiva é registrado. Consumido pelo ct-api (via webhook) para XP/gamificação e pelo journey-orchestrator para réguas de engajamento.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "matricula_id": { "type": "string" },
+    "aluno_id": { "type": "string" },
+    "disciplina_id": { "type": "string" },
+    "unidade": { "type": "integer", "minimum": 1 },
+    "percentual": { "type": "number", "minimum": 0, "maximum": 100 },
+    "concluido": { "type": "boolean" },
+    "atualizado_em": { "type": "string", "format": "date-time" }
+  },
+  "required": ["tenant_id", "matricula_id", "aluno_id", "disciplina_id", "unidade", "percentual", "concluido"]
+}

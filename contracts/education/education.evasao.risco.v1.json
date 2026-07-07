@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evasão Risco Event",
+  "description": "Publicado pelo learning-analytics quando um aluno é classificado em risco ALTO de evasão (varredura). Consumido pelo ct-api/predictive-engine para réguas de retenção e alertas ao tutor.",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "course_id": { "type": "string" },
+    "course_title": { "type": "string" },
+    "avg_progress": { "type": "number", "minimum": 0, "maximum": 100 },
+    "days_inactive": { "type": "integer" },
+    "risk_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "reasons": { "type": "array", "items": { "type": "string" } },
+    "detected_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["tenant_id", "user_id", "course_id", "risk_score"]
+}

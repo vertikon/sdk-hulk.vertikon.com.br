@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Return Created Event",
+  "type": "object",
+  "properties": {
+    "return_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "order_id": {
+      "type": "string"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "rma_number": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["REFUND", "EXCHANGE", "REPAIR", "REPLACEMENT"]
+    },
+    "status": {
+      "type": "string"
+    },
+    "refund_amount": {
+      "type": "number"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "return_id",
+    "order_id",
+    "customer_id",
+    "rma_number",
+    "type",
+    "status",
+    "timestamp"
+  ]
+}

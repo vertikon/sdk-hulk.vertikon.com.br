@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Payment Authorized Event",
+  "type": "object",
+  "properties": {
+    "transaction_id": { "type": "string" },
+    "provider_tx_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["AUTHORIZED", "CAPTURED"] },
+    "authorization_code": { "type": "string" },
+    "amount": { "type": "integer", "description": "Valor em centavos" },
+    "currency": { "type": "string" },
+    "payment_method": { "type": "string", "enum": ["CREDIT_CARD", "DEBIT_CARD", "PIX"] },
+    "provider": { "type": "string" },
+    "acquirer_cnpj": { "type": "string" },
+    "payment_method_code": { "type": "string", "description": "Código SEFAZ (03, 04, 17...)" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["transaction_id", "status", "amount", "payment_method", "provider", "timestamp"]
+}

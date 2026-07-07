@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Order Created Event",
+  "type": "object",
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["CREATED"]
+    },
+    "total_amount": {
+      "type": "number"
+    },
+    "payment_method": {
+      "type": "string"
+    },
+    "transaction_id": {
+        "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "subtotal": {
+            "type": "number"
+          }
+        },
+        "required": ["sku", "quantity", "unit_price", "subtotal"]
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "order_id",
+    "customer_id",
+    "status",
+    "total_amount",
+    "payment_method",
+    "items",
+    "created_at"
+  ]
+}

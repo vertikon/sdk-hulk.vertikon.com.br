@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evento Lembrete Event",
+  "description": "Publicado pelo ReminderWorker do academic-core ~24h antes de um evento do calendário (prova, prazo, aula, vencimento). O lembrete é do EVENTO; o consumidor faz o fan-out por aluno (o ct-api resolve os matriculados do curso e cria notificações in-app; WhatsApp plugável pelo mesmo tópico).",
+  "type": "object",
+  "properties": {
+    "tenant_id": { "type": "string" },
+    "evento_id": { "type": "string" },
+    "curso_id": { "type": "string", "description": "Vazio = evento do tenant inteiro" },
+    "tipo": { "type": "string", "enum": ["PROVA", "PRAZO", "AULA", "VENCIMENTO", "EVENTO"] },
+    "titulo": { "type": "string" },
+    "local": { "type": "string" },
+    "inicio": { "type": "string", "format": "date-time" }
+  },
+  "required": ["tenant_id", "evento_id", "tipo", "titulo", "inicio"]
+}

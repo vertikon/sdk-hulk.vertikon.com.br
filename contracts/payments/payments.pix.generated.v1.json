@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PIX Generated Event",
+  "type": "object",
+  "properties": {
+    "transaction_id": { "type": "string" },
+    "provider_tx_id": { "type": "string" },
+    "amount": { "type": "integer", "description": "Valor em centavos" },
+    "qr_code": { "type": "string" },
+    "qr_code_text": { "type": "string", "description": "PIX copia-e-cola" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "provider": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["transaction_id", "amount", "qr_code_text", "expires_at", "provider", "timestamp"]
+}
