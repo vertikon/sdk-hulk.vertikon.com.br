@@ -7,6 +7,16 @@ import (
 	"go.uber.org/zap"
 )
 
+// traceIDKey é a chave tipada para propagar trace_id fora do OpenTelemetry
+// (chave string crua colide entre pacotes — SA1029).
+type traceIDKey struct{}
+
+// ContextWithTraceID grava um trace_id customizado no contexto, lido por
+// WithContext/extractTraceID quando não há span OpenTelemetry.
+func ContextWithTraceID(ctx context.Context, traceID string) context.Context {
+	return context.WithValue(ctx, traceIDKey{}, traceID)
+}
+
 // Logger fornece operações de logging estruturado com suporte a tracing.
 type Logger struct {
 	base *zap.Logger
@@ -56,8 +66,8 @@ func extractTraceID(ctx context.Context) string {
 		}
 	}
 
-	// Formato customizado (se o HULK usar)
-	if traceID, ok := ctx.Value("trace_id").(string); ok {
+	// Formato customizado (gravado via ContextWithTraceID)
+	if traceID, ok := ctx.Value(traceIDKey{}).(string); ok {
 		return traceID
 	}
 

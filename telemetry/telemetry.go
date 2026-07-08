@@ -45,12 +45,10 @@ func Init(ctx context.Context, cfg Config) (ShutdownFunc, error) {
 	}
 
 	// 2. Configurar Conexão gRPC com o Collector
-	// Nota: Usamos WithBlock() para garantir que a conexão existe antes de continuar.
-	dialCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
-	defer cancel()
-	conn, err := grpc.DialContext(dialCtx, cfg.CollectorURL,
+	// NewClient conecta sob demanda: erro de rede aparece no primeiro export,
+	// não aqui (DialContext+WithBlock foram deprecados pelo grpc-go).
+	conn, err := grpc.NewClient(cfg.CollectorURL,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithBlock(),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("falha ao conectar gRPC OTel: %w", err)

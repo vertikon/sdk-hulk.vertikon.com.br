@@ -48,7 +48,7 @@ func TestLogger_WithContext_CustomTrace(t *testing.T) {
 	base := zap.New(observedZapCore)
 	logger := NewLogger(base)
 
-	ctx := context.WithValue(context.Background(), "trace_id", "custom-trace-id")
+	ctx := ContextWithTraceID(context.Background(), "custom-trace-id")
 	log := logger.WithContext(ctx)
 	log.Info("test message")
 

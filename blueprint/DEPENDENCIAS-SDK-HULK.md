@@ -170,11 +170,10 @@ O SDK-HULK segue o princípio de **dependências mínimas**:
 
 ### Go Version
 
-**Mínimo:** Go 1.22  
-**Recomendado:** Go 1.22+  
-**Testado:** Go 1.22.0
+**Mínimo:** Go 1.24  
+**Recomendado:** Go 1.25+ (go.mod: 1.25.5)  
 
-**Nota:** Alinhado com mcp-hulk (Go 1.22+)
+**Nota:** Alinhado com mcp-hulk (go.mod: 1.24.0)
 
 ### Compatibilidade de OS
 

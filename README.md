@@ -17,6 +17,15 @@ O `sdk-hulk` é a "cola" que permite escrever os 54 módulos do sistema como se 
 
 O SDK-HULK abstrai a complexidade do Core (NATS, Bancos, AI, Logs) para que o desenvolvedor do Bloco foque apenas na **Regra de Negócio**. 
 
+### Família HULK
+
+| Repo | Papel |
+|---|---|
+| **mcp-hulk** (`B:\mcp-hulk.vertikon.com.br`) | Base MCP do ecossistema: servidor MCP (stdio) + engine de geração de projetos (`pkg/hulkgen`) — ver `DEVKIT.md` de lá |
+| **sdk-hulk** (este repo) | SDK + runtime do Monolito Modular: interfaces (`Module`, `Context`) e `App` que hospeda os módulos |
+
+Gate de qualidade compartilhado: `go build && go vet && staticcheck (zero) && go test` — CI em `.github/workflows/ci.yml` nos dois repos.
+
 ### Benefícios
 
 1. **Inversão de Dependência (DIP)**: Módulos não dependem de drivers específicos, apenas de interfaces
