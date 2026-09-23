@@ -70,3 +70,51 @@ func TestNewPage(t *testing.T) {
 		t.Errorf("defaults incorretos: %+v", page.Pagination)
 	}
 }
+
+// TestUUIDParam: o contrato que importa é o ERRO NÃO-NULO no caminho inválido.
+// Devolver o resultado de c.JSON (que é nil) faria o handler continuar com id
+// vazio, e o middleware.Recover() do EchoServer esconderia o pânico atrás do 400
+// já escrito — teste verde, bug em produção.
+func TestUUIDParam(t *testing.T) {
+	novoCtx := func(valor string) (*EchoContext, *httptest.ResponseRecorder) {
+		e := echo.New()
+		req := httptest.NewRequest(http.MethodGet, "/", nil)
+		rec := httptest.NewRecorder()
+		c := e.NewContext(req, rec)
+		c.SetParamNames("id")
+		c.SetParamValues(valor)
+		return &EchoContext{ctx: c}, rec
+	}
+
+	t.Run("id inválido responde 400 e devolve erro não-nulo", func(t *testing.T) {
+		c, rec := novoCtx("nao-e-uuid")
+		id, err := UUIDParam(c, "id")
+		if err == nil {
+			t.Fatal("erro nulo: o handler seguiria adiante com id vazio")
+		}
+		if id != "" {
+			t.Errorf("id = %q, esperado vazio", id)
+		}
+		if rec.Code != http.StatusBadRequest {
+			t.Errorf("status = %d, esperado 400", rec.Code)
+		}
+		var body ErrorBody
+		if e := json.Unmarshal(rec.Body.Bytes(), &body); e != nil || body.Error == "" {
+			t.Errorf("envelope de erro inválido: %s", rec.Body.String())
+		}
+	})
+
+	t.Run("UUID válido passa", func(t *testing.T) {
+		c, rec := novoCtx("  0b4bb0e0-2c2e-4d2f-9c1f-9a1f1f2b3c4d  ")
+		id, err := UUIDParam(c, "id")
+		if err != nil {
+			t.Fatalf("erro inesperado: %v", err)
+		}
+		if id != "0b4bb0e0-2c2e-4d2f-9c1f-9a1f1f2b3c4d" {
+			t.Errorf("id = %q (espaços deveriam ser aparados)", id)
+		}
+		if rec.Code != http.StatusOK || rec.Body.Len() != 0 {
+			t.Errorf("caminho feliz não deveria escrever resposta: %d %s", rec.Code, rec.Body.String())
+		}
+	})
+}

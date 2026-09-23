@@ -200,3 +200,13 @@ err := ctx.EventBus().QueueSubscribe(
 **Última atualização:** 2025-11-24  
 **Mantido por:** Equipe Vertikon
 
+## Catálogo gerado + envelope de correlação (F1.4, 2026-07-10)
+
+- **Catálogo completo (gerado do código):** `api/asyncapi/eduue-events.yaml` — regenere com
+  `go run ./tools/asyncapi`; o gate `asyncapi-drift.yml` falha o CI se defasar.
+- **Envelope obrigatório para eventos NOVOS:** publique `events.Envelope(ctx, payload)`
+  (em `pkg/sdk-hulk/events/envelope.go`) — adiciona `event_id` (idempotência),
+  `correlation_id` (trace OTel do request), `tenant_id` (do request context),
+  `occurred_at` e `schema: vtk.event.envelope.v1`. Cadeia de causalidade:
+  `events.Envelope(ctx, p).Caused(eventoOrigem.EventID)`.
+  Eventos legados seguem com payload cru (backfill fora de escopo).

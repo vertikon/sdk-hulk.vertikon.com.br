@@ -623,6 +623,14 @@ func (a *App) Run() {
 		a.setStatus(cfg.ID, "running", "", time.Now())
 	}
 
+	// Fim da fase de boot (flip RLS): migrations/seeds rodaram pelo pool owner
+	// (MIGRATIONS_DATABASE_URL); daqui em diante o store usa o pool principal
+	// (app_login, RLS enforçada). Sempre ANTES de o HTTP começar a servir.
+	if pgStore != nil {
+		pgStore.EndBoot()
+		a.logger.Info("🔒 Boot concluído — store no pool principal (RLS enforçada quando app_login)")
+	}
+
 	// Start HTTP Server in background
 	go func() {
 		port := cfg.App.HTTP.Port

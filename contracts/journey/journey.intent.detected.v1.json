@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Journey Intent Detected Event",
+  "description": "Intenção detectada na conversa (espelha domain.IntentDetectedPayload).",
+  "type": "object",
+  "properties": {
+    "session_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "intent": { "type": "string" },
+    "message": { "type": "string" },
+    "detected_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["session_id", "user_id", "intent"]
+}

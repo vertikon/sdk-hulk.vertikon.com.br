@@ -152,6 +152,16 @@ func (r *responseRecorder) Write(b []byte) (int, error) {
 	return r.ResponseWriter.Write(b)
 }
 
+// Flush delega ao writer original. Sem isto o echo faz PANIC ("response writer does not
+// support flushing") quando o reverse proxy do external-gateway dispara o flush periódico numa
+// resposta lenta com Idempotency-Key — derrubou o monólito inteiro em produção em 17/09/2026
+// (POST /ext/v1/checkout/orders esperando o Asaas). Sem Flusher por baixo, é no-op.
+func (r *responseRecorder) Flush() {
+	if f, ok := r.ResponseWriter.(http.Flusher); ok {
+		f.Flush()
+	}
+}
+
 // MemoryIdempotencyStore é a implementação in-memory de IdempotencyStore
 type MemoryIdempotencyStore struct {
 	mu      sync.Mutex

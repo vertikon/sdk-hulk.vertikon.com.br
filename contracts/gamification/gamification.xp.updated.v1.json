@@ -4,6 +4,7 @@
   "description": "Publicado pelo módulo gamification quando o XP de um usuário é atualizado. Consumido pelo eduuo (notificações/UI) e pelo neuralead-orbital (E-score).",
   "type": "object",
   "properties": {
+    "tenant_id": { "type": "string", "description": "Tenant dono do aluno (RLS/LRS)" },
     "user_id": { "type": "string" },
     "action": { "type": "string" },
     "xp_delta": { "type": "integer" },
@@ -12,5 +13,5 @@
     "streak": { "type": "integer", "minimum": 0 },
     "updated_at": { "type": "string", "format": "date-time" }
   },
-  "required": ["user_id", "action", "xp_total", "level"]
+  "required": ["tenant_id", "user_id", "action", "xp_total", "level"]
 }

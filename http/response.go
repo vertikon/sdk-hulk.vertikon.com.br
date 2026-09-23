@@ -1,6 +1,12 @@
 package http
 
 import (
+	"errors"
+	"fmt"
+	"net/http"
+	"strings"
+
+	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 )
 
@@ -76,6 +82,35 @@ func NewPage(data interface{}, page, pageSize int, total int64) Page {
 		},
 	}
 }
+
+// UUIDParam lê um parâmetro de rota que vai DIRETO para uma coluna UUID e responde
+// 400 se não for um UUID, antes de tocar o banco. Sem isso, um path que caia no `/:id`
+// por engano (ex.: /products/pipeline) vira 500 com o erro cru do Postgres no corpo —
+// erro de cliente contado como falha nossa, e detalhe de banco na API pública.
+//
+// Uso: `id, err := httpx.UUIDParam(c, "id"); if err != nil { return err }`.
+// O gateway /ext/v1 tem a rede de segurança que sanitiza o que escapar; esta guarda
+// evita a ida ao banco e devolve a mensagem certa.
+//
+// CUIDADO ao mexer: o erro devolvido tem de ser NÃO-NULO. `c.JSON` devolve nil em
+// caso de sucesso, então devolver o resultado dele direto faria o handler seguir
+// adiante com id vazio — e o `middleware.Recover()` do EchoServer esconderia o
+// pânico atrás do 400 já escrito, com o teste passando pelo motivo errado.
+// A resposta já foi escrita aqui; o DefaultHTTPErrorHandler do Echo vê
+// Response().Committed e não escreve de novo.
+func UUIDParam(c Context, name string) (string, error) {
+	id := strings.TrimSpace(c.Param(name))
+	if _, err := uuid.Parse(id); err != nil {
+		_ = ErrorFromSDK(c, http.StatusBadRequest, "",
+			fmt.Sprintf("%s inválido (esperado UUID)", name))
+		return "", ErrInvalidUUID
+	}
+	return id, nil
+}
+
+// ErrInvalidUUID sinaliza que UUIDParam já respondeu 400 — o handler só precisa
+// devolvê-lo para encerrar.
+var ErrInvalidUUID = errors.New("parâmetro de rota não é um UUID")
 
 func requestID(c echo.Context) string {
 	if id := c.Response().Header().Get(echo.HeaderXRequestID); id != "" {

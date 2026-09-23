@@ -78,3 +78,29 @@ func TestGenerateAPIKey(t *testing.T) {
 		t.Error("duas chaves geradas são idênticas")
 	}
 }
+
+// TestIsReadOnly cobre o corte que impede um agente só-leitura de receber tool
+// de escrita marcada com scope ":read" no contrato (ex.: otp_verify).
+func TestIsReadOnly(t *testing.T) {
+	casos := []struct {
+		nome   string
+		scopes []string
+		quer   bool
+	}{
+		{"so leitura", []string{"whatsapp:read", "leads:read"}, true},
+		{"uma escrita contamina", []string{"whatsapp:read", "campaign:write"}, false},
+		{"curinga de dominio nao e leitura", []string{"whatsapp:*"}, false},
+		{"curinga global nao e leitura", []string{"*"}, false},
+		{"sem scope e indefinido, nao read-only", nil, false},
+		{"espaco em volta nao engana", []string{" whatsapp:read "}, true},
+		{"scope sem acao nao e leitura", []string{"whatsapp"}, false},
+	}
+	for _, c := range casos {
+		t.Run(c.nome, func(t *testing.T) {
+			s := &Service{Scopes: c.scopes}
+			if got := s.IsReadOnly(); got != c.quer {
+				t.Errorf("IsReadOnly() = %v, esperava %v (scopes=%v)", got, c.quer, c.scopes)
+			}
+		})
+	}
+}

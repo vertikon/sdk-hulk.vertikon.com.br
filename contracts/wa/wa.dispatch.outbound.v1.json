@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WA Dispatch Outbound Event",
+  "description": "Fila de envio WhatsApp. Contrato CANÔNICO = o que o wa-dispatch-consumer decodifica (to, type, template_name, content, priority, parameters). Publishers: proactive-playbooks, marketing-automation, journey-orchestrator, wa-marketing-api, campaign-manager, retargeting, booking, in-chat-checkout, contract-signature — campos extras (tenant_id/source/ids) são informativos.",
+  "type": "object",
+  "properties": {
+    "to": { "type": "string", "description": "Telefone destino (E.164/dígitos)" },
+    "type": { "type": "string", "enum": ["text", "template", "interactive", "media"], "description": "Tipo de mensagem" },
+    "template_name": { "type": "string", "description": "Nome do template WABA (type=template)" },
+    "content": { "type": "string", "description": "Corpo (type=text)" },
+    "priority": { "type": "integer", "minimum": 0 },
+    "parameters": { "type": "object", "description": "Parâmetros do template (ex.: body: [..])" },
+    "tenant_id": { "type": "string" },
+    "source": { "type": "string", "description": "Módulo publicador" }
+  },
+  "required": ["to"],
+  "additionalProperties": true
+}

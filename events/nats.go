@@ -182,9 +182,16 @@ func (b *NatsBus) Subscribe(topic string, handler Handler) error {
 		}
 	}
 
-	// 3. Cria consumer efêmero
+	// 3. Cria consumer efêmero.
+	// DeliverNew: semântica de BUS (só eventos novos) — o default DeliverAll
+	// reentregava até 7 dias de stream a cada restart (storm de replay,
+	// incidente 2026-07-20 do ai-bot). InactiveThreshold longo: callbacks
+	// lentos (LLM 25-60s) seguravam o pull e o server apagava o consumer
+	// efêmero em silêncio, matando a assinatura sem erro.
 	consumer, err := b.js.CreateOrUpdateConsumer(ctx, streamName, jetstream.ConsumerConfig{
-		FilterSubject: topic,
+		FilterSubject:     topic,
+		DeliverPolicy:     jetstream.DeliverNewPolicy,
+		InactiveThreshold: 30 * time.Minute,
 	})
 
 	if err != nil {
@@ -198,7 +205,10 @@ func (b *NatsBus) Subscribe(topic string, handler Handler) error {
 		} else {
 			msg.Ack()
 		}
-	})
+	}, jetstream.ConsumeErrHandler(func(_ jetstream.ConsumeContext, cerr error) {
+		// Morte silenciosa do consumer era indiagnosticável — ao menos logar.
+		fmt.Printf("⚠️ events.Subscribe(%s): erro no consume: %v\n", topic, cerr)
+	}))
 
 	return err
 }

@@ -47,6 +47,26 @@ func (s *Service) HasScope(required string) bool {
 	return false
 }
 
+// IsReadOnly indica que a credencial só carrega scopes de leitura (":read").
+// Curinga (":*" ou "*") NÃO é leitura. Credencial sem scope nenhum também não
+// conta como só-leitura: é indefinida, e o HasScope já nega tudo.
+//
+// Serve para não entregar tool de escrita a um agente só-leitura mesmo quando o
+// contrato marcou o scope da operação como ":read" — há POSTs assim no catálogo
+// (ex.: otp_verify com whatsapp:read); ver pkg/actionrisk, que trata o domínio
+// como autoridade sobre o scope declarado.
+func (s *Service) IsReadOnly() bool {
+	if len(s.Scopes) == 0 {
+		return false
+	}
+	for _, scope := range s.Scopes {
+		if !strings.HasSuffix(strings.TrimSpace(scope), ":read") {
+			return false
+		}
+	}
+	return true
+}
+
 // CanAccessTenant verifica se a credencial pode operar sobre o tenant informado.
 func (s *Service) CanAccessTenant(tenantID uuid.UUID) bool {
 	for _, t := range s.TenantIDs {

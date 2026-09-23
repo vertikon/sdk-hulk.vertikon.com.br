@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WA Message Read Event",
+  "description": "Mensagem WhatsApp lida (status da Meta; espelha domain.MessageReadPayload).",
+  "type": "object",
+  "properties": {
+    "message_id": { "type": "string" },
+    "to": { "type": "string" },
+    "read_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["message_id", "to"]
+}

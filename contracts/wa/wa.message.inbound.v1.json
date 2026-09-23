@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WA Message Inbound Event",
+  "description": "Mensagem WhatsApp RECEBIDA (webhook Meta → wa-core-api; espelha domain.InboundMessagePayload). Consumida por bots/CRM/sinais.",
+  "type": "object",
+  "properties": {
+    "message_id": { "type": "string" },
+    "from": { "type": "string" },
+    "content": { "type": "string" },
+    "type": { "type": "string" },
+    "media_id": { "type": "string", "description": "id da mídia inbound (image/audio/…)" },
+    "mime_type": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "phone_number_id": { "type": "string" },
+    "received_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["message_id", "from", "tenant_id"]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Journey Message Processed Event",
+  "description": "Mensagem processada + resposta gerada (espelha domain.MessageProcessedPayload).",
+  "type": "object",
+  "properties": {
+    "session_id": { "type": "string" },
+    "user_id": { "type": "string" },
+    "message": { "type": "string" },
+    "response": { "type": "string" },
+    "processed_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["session_id", "user_id"]
+}

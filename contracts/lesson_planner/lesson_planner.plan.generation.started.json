@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lesson Planner Plan Event (generation.started)",
+  "description": "Ciclo de geração assíncrona do plano de aula com IA (lesson-planner-ai #361). Sem PII: autor hasheado (SHA-256), conteúdo pedagógico NÃO trafega.",
+  "type": "object",
+  "properties": {
+    "plan_id": { "type": "string" },
+    "tenant_id": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "author_hash": { "type": "string", "description": "SHA-256 do autor (anonimizado)" },
+    "status": { "type": "string" },
+    "reason": { "type": "string", "description": "Só em generation.failed (mensagem curta, sem PII)" }
+  },
+  "required": ["plan_id", "tenant_id"]
+}

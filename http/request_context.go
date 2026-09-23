@@ -5,6 +5,8 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
+
+	"github.com/vertikon/sdk-hulk.vertikon.com.br/state"
 )
 
 type ctxKey string
@@ -86,6 +88,16 @@ func WithTenantID(ctx context.Context, tenantID uuid.UUID) context.Context {
 	return context.WithValue(ctx, ctxKeyTenantID, tenantID)
 }
 
+// WithTenantSlug injeta o tenant vindo de um PATH público (ex.: LTI /t/:tenant/...)
+// no contexto RLS. Só uuids válidos contam — slugs como "global" não viram
+// contexto (mesma regra do hook TenantFromContext).
+func WithTenantSlug(ctx context.Context, tenant string) context.Context {
+	if tid, err := uuid.Parse(tenant); err == nil && tid != uuid.Nil {
+		return WithTenantID(ctx, tid)
+	}
+	return ctx
+}
+
 func WithGroupID(ctx context.Context, groupID uuid.UUID) context.Context {
 	if ctx == nil {
 		ctx = context.Background()
@@ -105,4 +117,27 @@ func WithUserID(ctx context.Context, userID uuid.UUID) context.Context {
 		ctx = context.Background()
 	}
 	return context.WithValue(ctx, ctxKeyUserID, userID)
+}
+
+// init injeta o leitor de tenant no pacote state (encanamento RLS F1.2):
+// o state não pode importar http (peso/eco de deps), então recebe o hook.
+//
+// Fallback pela chave STRING "tenant_id": os consumers NATS (engine do wa-core,
+// signal-classifier, etc.) montam o contexto com context.WithValue(ctx,
+// "tenant_id", s) — fora do middleware HTTP não existe a chave tipada, e sem o
+// fallback essas queries rodavam SEM set_config → RLS devolvia 0 linhas e os
+// handlers saíam calados (incidente 2026-07-16: ai-bot mudo desde o flip 14:02).
+// Só uuids válidos contam — "default"/"global" não viram contexto RLS.
+func init() {
+	state.TenantFromContext = func(ctx context.Context) (string, bool) {
+		if tid, err := TenantIDFromContext(ctx); err == nil {
+			return tid.String(), true
+		}
+		if s, ok := ctx.Value("tenant_id").(string); ok {
+			if tid, err := uuid.Parse(s); err == nil && tid != uuid.Nil {
+				return tid.String(), true
+			}
+		}
+		return "", false
+	}
 }
