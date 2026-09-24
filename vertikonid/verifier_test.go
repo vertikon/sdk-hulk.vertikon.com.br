@@ -158,3 +158,35 @@ func TestMiddleware(t *testing.T) {
 		})
 	}
 }
+
+func TestAudiencia(t *testing.T) {
+	f := newFixture(t)
+	f.v.Audience = "radar"
+	for _, tc := range []struct {
+		nome string
+		aud  any
+		quer error
+	}{
+		{"lista com a API", []string{"outra", "radar"}, nil},
+		{"string igual", "radar", nil},
+		{"emitido para outra API", "outra", ErrAudienceMismatch},
+		{"sem aud", nil, ErrAudienceMismatch},
+	} {
+		t.Run(tc.nome, func(t *testing.T) {
+			cl := baseClaims(f)
+			if tc.aud != nil {
+				cl["aud"] = tc.aud
+			}
+			if _, err := f.v.Verify(context.Background(), f.sign(t, "k1", cl)); !errors.Is(err, tc.quer) {
+				t.Fatalf("esperava %v, veio %v", tc.quer, err)
+			}
+		})
+	}
+	// Audience vazio = não pina (compatível com quem ainda não configurou)
+	f.v.Audience = ""
+	cl := baseClaims(f)
+	cl["aud"] = "qualquer"
+	if _, err := f.v.Verify(context.Background(), f.sign(t, "k1", cl)); err != nil {
+		t.Fatalf("sem Audience configurado não deveria exigir aud: %v", err)
+	}
+}

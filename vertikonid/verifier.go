@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"math/big"
 	"net/http"
+	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -36,6 +37,7 @@ var (
 	ErrKeyNotFound      = errors.New("vertikonid: kid não encontrado no JWKS")
 	ErrIssuerMismatch   = errors.New("vertikonid: issuer ausente ou não confere")
 	ErrAlgUnsupported   = errors.New("vertikonid: alg não suportado (só RS256)")
+	ErrAudienceMismatch = errors.New("vertikonid: token não foi emitido para esta API (aud)")
 )
 
 // Claims são as claims que a fundação honra em todo token do ID.
@@ -48,6 +50,8 @@ type Claims struct {
 	Scope    string `json:"scope"`
 	Exp      int64  `json:"exp"`
 	Iat      int64  `json:"iat"`
+	// Aud: APIs para as quais o token foi emitido (claim aud, string ou lista).
+	Aud []string `json:"-"`
 }
 
 // Suspended informa se o tenant está suspenso pelo billing.
@@ -67,7 +71,10 @@ func (c Claims) HasScope(s string) bool {
 // (refresh sob demanda quando aparece kid desconhecido — rotação de chave).
 type Verifier struct {
 	Issuer string
-	HTTP   *http.Client
+	// Audience, se não vazio, é exigido no aud do token (contrato D2 do ID: a API
+	// pina o aud além do iss — senão aceita token emitido para outro serviço).
+	Audience string
+	HTTP     *http.Client
 
 	mu   sync.RWMutex
 	keys map[string]*rsa.PublicKey
@@ -130,6 +137,18 @@ func (v *Verifier) Verify(ctx context.Context, token string) (*Claims, error) {
 	if err := json.Unmarshal(payB, &c); err != nil {
 		return nil, ErrTokenMalformed
 	}
+	var raw struct {
+		Aud json.RawMessage `json:"aud"`
+	}
+	_ = json.Unmarshal(payB, &raw)
+	if len(raw.Aud) > 0 {
+		var one string
+		if json.Unmarshal(raw.Aud, &one) == nil {
+			c.Aud = []string{one}
+		} else if json.Unmarshal(raw.Aud, &c.Aud) != nil {
+			return nil, ErrTokenMalformed
+		}
+	}
 	// Token sem exp seria eterno; sem iss poderia vir de outro emissor que
 	// compartilhe a chave. Ambos obrigatórios.
 	if c.Exp == 0 || time.Now().Unix() >= c.Exp {
@@ -137,6 +156,9 @@ func (v *Verifier) Verify(ctx context.Context, token string) (*Claims, error) {
 	}
 	if c.Iss != v.Issuer {
 		return nil, ErrIssuerMismatch
+	}
+	if v.Audience != "" && !slices.Contains(c.Aud, v.Audience) {
+		return nil, ErrAudienceMismatch
 	}
 	return &c, nil
 }
