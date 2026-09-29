@@ -48,6 +48,9 @@ type Claims struct {
 	Vertical string `json:"vertical"`
 	Plan     string `json:"plan"`
 	Scope    string `json:"scope"`
+	// Scp: o hub emite o escopo concedido também como lista (`scp`, padrão do fosite);
+	// medido em 29/09/2026 no token M2M — sem isto HasScope nunca casava.
+	Scp      []string `json:"scp"`
 	Exp      int64  `json:"exp"`
 	Iat      int64  `json:"iat"`
 	// Aud: APIs para as quais o token foi emitido (claim aud, string ou lista).
@@ -59,6 +62,11 @@ func (c Claims) Suspended() bool { return c.Plan == PlanSuspended }
 
 // HasScope verifica um escopo na claim space-separated.
 func (c Claims) HasScope(s string) bool {
+	for _, sc := range c.Scp {
+		if sc == s {
+			return true
+		}
+	}
 	for _, sc := range strings.Fields(c.Scope) {
 		if sc == s {
 			return true
