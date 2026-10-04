@@ -2,6 +2,7 @@ package events
 
 import (
 	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 )
@@ -481,9 +482,9 @@ func TestSubscriber_SubscribeToTopic(t *testing.T) {
 	bus := NewMockEventBus()
 	sub := NewSubscriber(bus)
 
-	received := false
+	var received atomic.Bool
 	handler := func(msg Message) error {
-		received = true
+		received.Store(true)
 		return nil
 	}
 
@@ -496,7 +497,7 @@ func TestSubscriber_SubscribeToTopic(t *testing.T) {
 	bus.Publish("test.sub", "test")
 	time.Sleep(50 * time.Millisecond)
 
-	if !received {
+	if !received.Load() {
 		t.Error("Handler not called after SubscribeToTopic")
 	}
 }
@@ -505,9 +506,10 @@ func TestSubscriber_SubscribeToQueue(t *testing.T) {
 	bus := NewMockEventBus()
 	sub := NewSubscriber(bus)
 
-	received := false
+	// atomic: o mock chama o handler numa goroutine (go handler(msg)).
+	var received atomic.Bool
 	handler := func(msg Message) error {
-		received = true
+		received.Store(true)
 		return nil
 	}
 
@@ -520,7 +522,7 @@ func TestSubscriber_SubscribeToQueue(t *testing.T) {
 	bus.Publish("test.queue", "test")
 	time.Sleep(50 * time.Millisecond)
 
-	if !received {
+	if !received.Load() {
 		t.Error("Handler not called after SubscribeToQueue")
 	}
 }
