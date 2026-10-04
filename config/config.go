@@ -29,6 +29,9 @@ type AppConfig struct {
 
 type HTTPConfig struct {
 	Port int `mapstructure:"port"`
+	// Host: interface de escuta (NET-02, 03/10/2026). Vazio = todas (comportamento antigo);
+	// "127.0.0.1" quando só o nginx local consome.
+	Host string `mapstructure:"host"`
 }
 
 type DatabaseConfig struct {
@@ -77,6 +80,7 @@ func Load() (*Config, error) {
 	_ = v.BindEnv("app.environment", "APP_ENVIRONMENT", "VERTIKON_APP_ENVIRONMENT")
 	_ = v.BindEnv("app.log_level", "LOG_LEVEL", "VERTIKON_APP_LOG_LEVEL", "VERTIKON_LOG_LEVEL")
 	_ = v.BindEnv("app.http.port", "HTTP_PORT", "VERTIKON_APP_HTTP_PORT", "VERTIKON_HTTP_PORT")
+	_ = v.BindEnv("app.http.host", "HTTP_HOST", "VERTIKON_APP_HTTP_HOST", "VERTIKON_HTTP_HOST")
 
 	_ = v.BindEnv("database.host", "DATABASE_HOST", "VERTIKON_DATABASE_HOST")
 	_ = v.BindEnv("database.port", "DATABASE_PORT", "VERTIKON_DATABASE_PORT")

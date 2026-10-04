@@ -635,7 +635,7 @@ func (a *App) Run() {
 	go func() {
 		port := cfg.App.HTTP.Port
 		a.logger.Info("🌍 Iniciando Servidor HTTP", zap.Int("port", port))
-		if err := httpServer.Start(port); err != nil && err != std_http.ErrServerClosed {
+		if err := httpServer.Start(cfg.App.HTTP.Host, port); err != nil && err != std_http.ErrServerClosed {
 			a.logger.Fatal("Falha no servidor HTTP", zap.Error(err))
 		}
 	}()

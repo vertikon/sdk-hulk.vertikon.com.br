@@ -36,8 +36,8 @@ func NewEchoServer() *EchoServer {
         return &EchoServer{echo: e}
 }
 
-func (s *EchoServer) Start(port int) error {
-	return s.echo.Start(fmt.Sprintf(":%d", port))
+func (s *EchoServer) Start(host string, port int) error {
+	return s.echo.Start(fmt.Sprintf("%s:%d", host, port))
 }
 
 func (s *EchoServer) Stop(ctx context.Context) error {
