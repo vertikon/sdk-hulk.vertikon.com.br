@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-05T14:02:42.491749+00:00",
+  "cwd": "B:\\sdk-hulk.vertikon.com.br",
+  "argv": [
+    "staticcheck",
+    "./..."
+  ],
+  "runner": "3.11.15 (main, May 10 2026, 19:31:25) [MSC v.1944 64 bit (AMD64)]",
+  "runner_executable": "C:\\Users\\Notebook\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "shell": "none (direct subprocess)",
+  "timeout_seconds": 180,
+  "environment": {
+    "GOWORK": null,
+    "GOOS": null,
+    "GOARCH": null,
+    "GOTOOLCHAIN": null,
+    "CGO_ENABLED": null,
+    "NODE_ENV": "production"
+  },
+  "executable": "C:\\Users\\Notebook\\go\\bin\\staticcheck.exe",
+  "exit_code": 0,
+  "status": "pass",
+  "duration_seconds": 47.734,
+  "tests": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0
+  },
+  "packages": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

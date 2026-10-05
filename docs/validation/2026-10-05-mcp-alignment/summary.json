@@ -1,0 +1,69 @@
+{
+  "base_commit": "3ec809fb238d550aaab7ed648d6e857b08a6d265",
+  "go_version": "go version go1.27.1 windows/amd64",
+  "files_sha256": {
+    "go.mod": "8776fff0e3a0e1b4cfc5c03e9a77baa896c9ddb3ac64990a5b7726f7e2c2a715",
+    "go.sum": "42dc4f39e09aac8c8ba2aa8cf32ef987de2064f8eae39252d200d54cc4bba275",
+    ".github/workflows/ci.yml": "a2d5eb90c479117a5c061415be1887a4030d5f3b1d639cd5ed44217eb55b71f4"
+  },
+  "baseline": {
+    "findings": [
+      {
+        "osv": "GO-2026-5932",
+        "trace": [
+          {
+            "module": "golang.org/x/crypto",
+            "version": "v0.55.0"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6354",
+        "fixed_version": "v0.56.0",
+        "trace": [
+          {
+            "module": "golang.org/x/crypto",
+            "version": "v0.55.0"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-6355",
+        "fixed_version": "v0.56.0",
+        "trace": [
+          {
+            "module": "golang.org/x/crypto",
+            "version": "v0.55.0"
+          }
+        ]
+      },
+      {
+        "osv": "GO-2026-5841",
+        "fixed_version": "v1.18.7",
+        "trace": [
+          {
+            "module": "github.com/klauspost/compress",
+            "version": "v1.18.5"
+          }
+        ]
+      }
+    ],
+    "called": 0,
+    "imported": 0
+  },
+  "updated": {
+    "findings": [
+      {
+        "osv": "GO-2026-5932",
+        "trace": [
+          {
+            "module": "golang.org/x/crypto",
+            "version": "v0.56.0"
+          }
+        ]
+      }
+    ],
+    "called": 0,
+    "imported": 0
+  }
+}

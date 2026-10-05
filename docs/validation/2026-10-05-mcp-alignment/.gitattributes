@@ -1,0 +1,2 @@
+# Keep raw evidence bytes and recorded hashes stable on Windows and Linux.
+* -text

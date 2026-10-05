@@ -1,0 +1,8 @@
+{"Time":"2026-10-05T11:04:33.9985875-03:00","Action":"start","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery"}
+{"Time":"2026-10-05T11:04:35.7650132-03:00","Action":"run","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Test":"TestClientPublishes"}
+{"Time":"2026-10-05T11:04:35.7650132-03:00","Action":"output","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Test":"TestClientPublishes","Output":"=== RUN   TestClientPublishes\n","OutputType":"frame"}
+{"Time":"2026-10-05T11:04:35.7785073-03:00","Action":"output","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Test":"TestClientPublishes","Output":"--- PASS: TestClientPublishes (0.01s)\n","OutputType":"frame"}
+{"Time":"2026-10-05T11:04:35.7785073-03:00","Action":"pass","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Test":"TestClientPublishes","Elapsed":0.01}
+{"Time":"2026-10-05T11:04:35.7785073-03:00","Action":"output","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Output":"PASS\n","OutputType":"frame"}
+{"Time":"2026-10-05T11:04:35.7846393-03:00","Action":"output","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Output":"ok  \tgithub.com/vertikon/sdk-hulk.vertikon.com.br/discovery\t1.786s\n"}
+{"Time":"2026-10-05T11:04:35.7846393-03:00","Action":"pass","Package":"github.com/vertikon/sdk-hulk.vertikon.com.br/discovery","Elapsed":1.786}

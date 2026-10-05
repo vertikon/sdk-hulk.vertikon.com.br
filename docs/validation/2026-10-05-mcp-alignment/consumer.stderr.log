@@ -1,0 +1,41 @@
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:37","msg":"Starting MCP Protocol server"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:71","msg":"Initializing MCP server components"}
+{"level":"info","ts":1791208938.533255,"caller":"generators/generator_factory.go:174","msg":"Registered generator","stack":"go","name":"Go Generator"}
+{"level":"info","ts":1791208938.533255,"caller":"generators/generator_factory.go:178","msg":"Registered generator","stack":"web","name":"Web Generator"}
+{"level":"info","ts":1791208938.533255,"caller":"generators/generator_factory.go:182","msg":"Registered generator","stack":"tinygo","name":"TinyGo Generator"}
+{"level":"info","ts":1791208938.533255,"caller":"generators/generator_factory.go:186","msg":"Registered generator","stack":"wasm","name":"WASM Generator"}
+{"level":"info","ts":1791208938.533255,"caller":"generators/generator_factory.go:190","msg":"Registered generator","stack":"mcp-go-premium","name":"MCP Go Premium Generator"}
+{"level":"info","ts":1791208938.533255,"caller":"registry/mcp_registry.go:72","msg":"Initializing MCP registry"}
+{"level":"info","ts":1791208938.533255,"caller":"registry/mcp_registry.go:89","msg":"Initialized default stacks","count":5}
+{"level":"info","ts":1791208938.533255,"caller":"registry/mcp_registry.go:92","msg":"Initialized default templates","count":5}
+{"level":"info","ts":1791208938.533255,"caller":"registry/mcp_registry.go:95","msg":"Loading registry data from storage","path":"C:\\Users\\Notebook\\AppData\\Local\\Temp\\sdk-mcp-consumer-rabs6h83\\registry"}
+{"level":"info","ts":1791208938.533255,"caller":"registry/mcp_registry.go:95","msg":"Storage directory does not exist, skipping load"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"get_project_info","description":"Get detailed information about a specific project"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"get_project_info"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"delete_project","description":"Delete a project and all its files"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"delete_project"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"update_project","description":"Update an existing project with new configuration or features"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"update_project"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"generate_project","description":"Generate a new project with specified technology stack and configuration"}
+{"level":"info","ts":1791208938.533255,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"generate_project"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"validate_project","description":"Validate a project structure and compliance with standards"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"validate_project"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"list_templates","description":"List all available templates for project generation"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"list_templates"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"describe_stack","description":"Get detailed information about a specific technology stack"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"describe_stack"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:117","msg":"Registered MCP tool handler","tool":"list_projects","description":"List all generated projects"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:122","msg":"Registered handler","handler":"list_projects"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:126","msg":"MCP server components initialized successfully","transport":"stdio","host":"localhost","port":3000,"max_workers":10}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:46","msg":"Starting MCP server","name":"mcp-hulk","version":"1.0.0","transport":"stdio"}
+{"level":"info","ts":1791208938.5341322,"caller":"protocol/server.go:123","msg":"Starting MCP server in stdio mode"}
+{"level":"info","ts":1791208938.5341322,"caller":"mcp-server/main.go:50","msg":"MCP Protocol server started successfully"}
+{"level":"info","ts":1791208938.5398917,"caller":"protocol/router.go:110","msg":"Generating project","name":"sdk-consumer","stack":"go","path":"C:\\Users\\Notebook\\AppData\\Local\\Temp\\sdk-mcp-consumer-rabs6h83","features":[]}
+{"level":"info","ts":1791208938.5398917,"caller":"generators/go_generator.go:27","msg":"Starting generation","generator":"Go Generator","stack":"go","project":"sdk-consumer","path":"C:\\Users\\Notebook\\AppData\\Local\\Temp\\sdk-mcp-consumer-rabs6h83"}
+{"level":"info","ts":1791208939.231885,"caller":"generators/go_generator.go:27","msg":"Generation completed","project":"sdk-consumer","path":"C:\\Users\\Notebook\\AppData\\Local\\Temp\\sdk-mcp-consumer-rabs6h83\\sdk-consumer","files_created":14,"duration":0.6919935,"size":22254}
+{"level":"info","ts":1791208939.2328937,"caller":"generators/go_generator.go:33","msg":"Starting Go project post-processing","project":"sdk-consumer","path":"C:\\Users\\Notebook\\AppData\\Local\\Temp\\sdk-mcp-consumer-rabs6h83\\sdk-consumer","features":[]}
+{"level":"info","ts":1791208939.233903,"caller":"generators/go_generator.go:33","msg":"Go project post-processing completed","project":"sdk-consumer","features":[]}
+{"level":"info","ts":1791208939.242586,"caller":"mcp-server/main.go:60","msg":"Shutting down MCP Protocol server"}
+{"level":"info","ts":1791208939.242586,"caller":"mcp-server/main.go:62","msg":"Stopping MCP server"}
+{"level":"info","ts":1791208939.242586,"caller":"mcp-server/main.go:62","msg":"MCP server stopped"}
+{"level":"info","ts":1791208939.242586,"caller":"mcp-server/main.go:66","msg":"MCP Protocol server stopped"}

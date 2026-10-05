@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-05T14:01:52.073654+00:00",
+  "cwd": "B:\\sdk-hulk.vertikon.com.br",
+  "argv": [
+    "go",
+    "test",
+    "-json",
+    "-count=1",
+    "-timeout",
+    "120s",
+    "./..."
+  ],
+  "runner": "3.11.15 (main, May 10 2026, 19:31:25) [MSC v.1944 64 bit (AMD64)]",
+  "runner_executable": "C:\\Users\\Notebook\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "shell": "none (direct subprocess)",
+  "timeout_seconds": 240,
+  "environment": {
+    "GOWORK": null,
+    "GOOS": null,
+    "GOARCH": null,
+    "GOTOOLCHAIN": null,
+    "CGO_ENABLED": null,
+    "NODE_ENV": "production"
+  },
+  "executable": "C:\\Program Files\\Go\\bin\\go.exe",
+  "exit_code": 0,
+  "status": "pass",
+  "duration_seconds": 69.125,
+  "tests": {
+    "pass": 234,
+    "fail": 0,
+    "skip": 1
+  },
+  "packages": {
+    "pass": 16,
+    "fail": 0,
+    "skip": 6
+  },
+  "stdout_sha256": "3e988e42f3914657de3f9eb3c72b1a06336f7a10fbeae52abb35d84cfb72f178",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

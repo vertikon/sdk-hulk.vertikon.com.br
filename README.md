@@ -26,6 +26,12 @@ O SDK-HULK abstrai a complexidade do Core (NATS, Bancos, AI, Logs) para que o de
 
 Gate de qualidade compartilhado: `go build && go vet && staticcheck (zero) && go test` — CI em `.github/workflows/ci.yml` nos dois repos.
 
+Atualização de compatibilidade em 2026-10-05: Go mínimo **1.26.0**, validação e CI
+em **1.27.1**. Dependências `compress` 1.18.7 e `x/crypto` 0.56.0 alinhadas às
+correções do MCP Hulk. Serviço Go gerado pelo MCP instalado validado com este SDK
+via `replace` local; isso não altera a versão do SDK fixada nos templates já
+publicados. [Resultados e limites](docs/validation/2026-10-05-mcp-alignment/README.md).
+
 ### Benefícios
 
 1. **Inversão de Dependência (DIP)**: Módulos não dependem de drivers específicos, apenas de interfaces

@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-05T14:01:51.852738+00:00",
+  "cwd": "B:\\sdk-hulk.vertikon.com.br",
+  "argv": [
+    "C:\\Users\\Notebook\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "docs\\validation\\2026-10-05-mcp-alignment\\consumer_probe.py",
+    "--mcp-root",
+    "B:\\mcp-hulk.vertikon.com.br"
+  ],
+  "runner": "3.11.15 (main, May 10 2026, 19:31:25) [MSC v.1944 64 bit (AMD64)]",
+  "runner_executable": "C:\\Users\\Notebook\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "shell": "none (direct subprocess)",
+  "timeout_seconds": 600,
+  "environment": {
+    "GOWORK": null,
+    "GOOS": null,
+    "GOARCH": null,
+    "GOTOOLCHAIN": null,
+    "CGO_ENABLED": null,
+    "NODE_ENV": "production"
+  },
+  "executable": "C:\\Users\\Notebook\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "exit_code": 0,
+  "status": "pass",
+  "duration_seconds": 96.953,
+  "tests": {
+    "pass": 9,
+    "fail": 0,
+    "skip": 0
+  },
+  "packages": {
+    "pass": 2,
+    "fail": 0,
+    "skip": 4
+  },
+  "stdout_sha256": "c9aa1cc2386c01d67d4b5a8a0eeab11a67d1b4dc17d47952db20d0624b9376b9",
+  "stderr_sha256": "2274752706a05dba8882c222522e92a6a2ba487d062523710fa354bae00a1b17"
+}
