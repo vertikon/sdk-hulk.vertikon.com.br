@@ -3,6 +3,7 @@ package events
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -37,9 +38,8 @@ func NewNatsBus(url, env string) (*NatsBus, error) {
 		maxAge = 7 * 24 * time.Hour // Deletion after 7 days for prod
 	}
 
-	// [DEV-FIX] Garantir que existe uma Stream "EVENTS" padrão
-	// Inicialmente apenas com "events.>", outros tópicos serão adicionados dinamicamente no Subscribe
-	_, err = js.CreateOrUpdateStream(context.Background(), jetstream.StreamConfig{
+	// Criar apenas quando ausente; streams existentes pertencem ao operador.
+	err = ensureEventsStream(context.Background(), js, jetstream.StreamConfig{
 		Name:     "EVENTS",
 		Subjects: []string{"events.>"},
 		Storage:  jetstream.FileStorage,
@@ -55,6 +55,33 @@ func NewNatsBus(url, env string) (*NatsBus, error) {
 		nc: nc,
 		js: js,
 	}, nil
+}
+
+func ensureEventsStream(ctx context.Context, js jetstream.JetStream, defaults jetstream.StreamConfig) error {
+	s, err := js.Stream(ctx, defaults.Name)
+	if errors.Is(err, jetstream.ErrStreamNotFound) {
+		_, err = js.CreateStream(ctx, defaults)
+		if err == nil {
+			return nil
+		}
+		// Outro processo pode ter criado a stream entre a consulta e a criação.
+		if !errors.Is(err, jetstream.ErrStreamNameAlreadyInUse) {
+			return err
+		}
+		s, err = js.Stream(ctx, defaults.Name)
+	}
+	if err != nil {
+		return err
+	}
+	cfg := s.CachedInfo().Config
+	for _, subject := range cfg.Subjects {
+		if subject == "events.>" {
+			return nil
+		}
+	}
+	cfg.Subjects = append(cfg.Subjects, "events.>")
+	_, err = js.UpdateStream(ctx, cfg)
+	return err
 }
 
 func (b *NatsBus) Close() {

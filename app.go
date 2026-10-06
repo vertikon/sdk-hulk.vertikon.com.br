@@ -21,9 +21,9 @@ import (
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/events"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/http"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/secrets"
-	"github.com/vertikon/sdk-hulk.vertikon.com.br/security"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/secrets/providers/file"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/secrets/providers/vault"
+	"github.com/vertikon/sdk-hulk.vertikon.com.br/security"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/state"
 	"github.com/vertikon/sdk-hulk.vertikon.com.br/telemetry"
 	"go.uber.org/zap"
@@ -137,16 +137,13 @@ func buildLogger(environment, logLevel string) (*zap.Logger, error) {
 }
 
 func collectorURLFromEnv() string {
-	raw := os.Getenv("OTEL_COLLECTOR_URL")
+	raw := strings.TrimSpace(os.Getenv("OTEL_COLLECTOR_URL"))
 	if raw == "" {
-		raw = os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
+		raw = strings.TrimSpace(os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT"))
 	}
 	raw = strings.TrimSpace(raw)
 	raw = strings.TrimPrefix(raw, "http://")
 	raw = strings.TrimPrefix(raw, "https://")
-	if raw == "" {
-		raw = "localhost:4317"
-	}
 	return raw
 }
 
@@ -207,24 +204,28 @@ func (a *App) Run() {
 	ctx := context.Background()
 
 	// --- [BLOCO-P] Inicializar Telemetria (OpenTelemetry) ---
-	otelShutdown, err := telemetry.Init(ctx, telemetry.Config{
-		ServiceName:    "vertikon-monolith",
-		ServiceVersion: "1.0.0",
-		Environment:    cfg.App.Environment,
-		CollectorURL:   collectorURLFromEnv(),
-		SampleRatio:    sampleRatioFromEnv(isProd),
-	})
-	if err != nil {
-		a.logger.Warn("⚠️ Falha ao inicializar OpenTelemetry. Continuando sem observabilidade.", zap.Error(err))
+	if collectorURL := collectorURLFromEnv(); collectorURL != "" {
+		otelShutdown, err := telemetry.Init(ctx, telemetry.Config{
+			ServiceName:    "vertikon-monolith",
+			ServiceVersion: "1.0.0",
+			Environment:    cfg.App.Environment,
+			CollectorURL:   collectorURL,
+			SampleRatio:    sampleRatioFromEnv(isProd),
+		})
+		if err != nil {
+			a.logger.Warn("⚠️ Falha ao inicializar OpenTelemetry. Continuando sem observabilidade.", zap.Error(err))
+		} else {
+			a.logger.Info("✅ OpenTelemetry inicializado")
+			defer func() {
+				shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+				defer cancel()
+				if err := otelShutdown(shutdownCtx); err != nil {
+					a.logger.Error("Erro ao desligar OTel", zap.Error(err))
+				}
+			}()
+		}
 	} else {
-		a.logger.Info("✅ OpenTelemetry inicializado")
-		defer func() {
-			shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-			defer cancel()
-			if err := otelShutdown(shutdownCtx); err != nil {
-				a.logger.Error("Erro ao desligar OTel", zap.Error(err))
-			}
-		}()
+		a.logger.Info("OpenTelemetry desabilitado: endpoint do collector ausente")
 	}
 
 	// Store (Postgres + Redis)
