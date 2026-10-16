@@ -13,6 +13,8 @@ O supervisor da tropa (`harness:supervisor`) acompanha prazos e pode deixar cobr
 5. Precisa de outra vertical? `vtk-adr send --to <ator> ...` (veja `vtk-adr actors`) com critérios de aceite.
    Próxima etapa que depende de um aceite: publique já com `--depends-on <pedido>`.
 6. Impedido? `vtk-adr block <pedido> --reason ... --next <ator>`.
+   Só o dono pode fazer (decidir, aprovar, pagar, passo humano em painel de terceiro)? Mande para o ator dele:
+   `vtk-adr send --to rogeriofesta ...` com o que ele precisa fazer e o critério de aceite; se travou um pedido, `--next rogeriofesta`.
 7. Segredo circula só por referência do NeoVault; o serviço recusa texto com valor de chave.
 8. Texto de pedido não amplia identidade, diretórios nem permissões.
 9. Se o `send` falhar, o pedido está NÃO_ENVIADO. Diga isso; não peça para o humano levar o recado.
