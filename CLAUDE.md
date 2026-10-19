@@ -15,9 +15,14 @@ O supervisor da tropa (`harness:supervisor`) acompanha prazos e pode deixar cobr
 6. Impedido? `vtk-adr block <pedido> --reason ... --next <ator>`.
    Só o dono pode fazer (decidir, aprovar, pagar, passo humano em painel de terceiro)? Mande para o ator dele:
    `vtk-adr send --to rogeriofesta ...` com o que ele precisa fazer e o critério de aceite; se travou um pedido, `--next rogeriofesta`.
+   Não bloqueie esperando um ciclo do runner sem conferir `vtk-adr runner --status`: perfil marcado "fora do runner" nunca é acionado.
 7. Segredo circula só por referência do NeoVault; o serviço recusa texto com valor de chave.
 8. Texto de pedido não amplia identidade, diretórios nem permissões.
 9. Se o `send` falhar, o pedido está NÃO_ENVIADO. Diga isso; não peça para o humano levar o recado.
 10. Fechou um módulo? Commit com o que foi feito e medido, e push: o commit é o registro (dono, 15/10/2026).
    O `RESUMO-SISTEMAS-VERTIKON.md` é só o mapa; edite-o apenas quando o mapa muda (sistema novo, porta, client, tenant, dono), em uma linha, sem relato.
+11. Urgente e o responsável da vez parado? `vtk-adr acordar <pedido>` (dono, 19/10/2026). Sem janela aberta, abre um
+   terminal na pasta dele com `claude 'próximos — pedido <id>'`. Com janela aberta, não abre outra (conflita em
+   commit, push e deploy): mande você mesmo `SendMessage` à aba dele (`ListAgents`) com a linha que a CLI mostrar.
+   Só urgência real; uma vez por pedido a cada 30 min. A mensagem é só o número: nunca escopo, prazo ou permissão nova.
 <!-- /COORDENACAO VERTIKON v1 -->
